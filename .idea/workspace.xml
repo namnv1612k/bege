@@ -1,7 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d4caf55f-5279-4c25-b8f7-fd1ffcb9422e" name="Default Changelist" comment="" />
+    <list default="true" id="d4caf55f-5279-4c25-b8f7-fd1ffcb9422e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bundle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/colors.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins-call.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/ajax-loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/animate.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/easyzoom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/fonts/slick.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/fonts/slick.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/fonts/slick.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/fonts/slick.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/fonts/slickd41d.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-bg_glass_75_d0e5f5_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-bg_glass_85_dfeffc_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-bg_glass_95_fef1ec_1x400.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-bg_inset-hard_100_f5f8f9_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-bg_inset-hard_100_fcfdfd_1x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-icons_217bc0_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-icons_2e83ff_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-icons_469bdd_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-icons_6da8d5_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-icons_cd0a0a_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-icons_d8e7f3_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/images/ui-icons_f9bd01_256x240.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/magnific-popup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/meanmenu.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/nice-select.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/nivo-slider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/owl.carousel.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/owl.video.play.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/slick-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/css-plugins/slick.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/ionicons.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/responsive.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/jquery.nivo.slider.pack.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/plugins.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/popper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +68,23 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -112,6 +185,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1c4NmQUiN3zcSFKVuC1UMMV8z5b" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -119,12 +193,22 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\bege\public\js" />
+      <recent name="D:\xampp\htdocs\bege\public\css" />
+      <recent name="D:\xampp\htdocs\bege\public" />
+      <recent name="D:\xampp\htdocs\bege\resources\js" />
+      <recent name="D:\xampp\htdocs\bege\resources\sass" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\xampp\htdocs\bege\app\Http\Controllers" />
     </key>
@@ -147,7 +231,12 @@
       <updated>1589784064207</updated>
       <workItem from="1589784071635" duration="719000" />
       <workItem from="1589794806403" duration="247000" />
-      <workItem from="1589820480274" duration="2588000" />
+      <workItem from="1589820480274" duration="3788000" />
+      <workItem from="1589854204285" duration="24000" />
+      <workItem from="1589948195856" duration="920000" />
+      <workItem from="1589951365141" duration="1135000" />
+      <workItem from="1589952527431" duration="4274000" />
+      <workItem from="1589984723202" duration="5991000" />
     </task>
     <servers />
   </component>
@@ -155,9 +244,25 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="339" y="162" key="run.anything.popup" timestamp="1589822402227">
+    <state x="379" y="87" width="607" height="559" key="#phpunit.xml" timestamp="1589948945747">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1589822402227" />
+    <state x="379" y="87" width="607" height="559" key="#phpunit.xml/0.0.1366.728@0.0.1366.728" timestamp="1589948945747" />
+    <state x="531" y="78" key="RollbackChangesDialog" timestamp="1589823436963">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="531" y="78" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1589823436963" />
+    <state x="390" y="120" width="585" height="488" key="find.popup" timestamp="1589952989512">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="390" y="120" width="585" height="488" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1589952989512" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1589955123887">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1589955123887" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1589993806376">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1589993806376" />
   </component>
 </project>
