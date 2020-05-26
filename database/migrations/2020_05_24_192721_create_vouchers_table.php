@@ -17,8 +17,8 @@ class CreateVouchersTable extends Migration
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->string('name')->comment('Tên mã giảm giá');
             $table->string('code')->comment('Mã giảm giá')->unique();
-            $table->timestamp('start')->comment('Ngày bắt đầu');
-            $table->timestamp('end')->comment('Ngày kết thúc');
+            $table->timestamp('day_start')->comment('Ngày bắt đầu')->useCurrent();
+            $table->timestamp('day_end')->comment('Ngày kết thúc')->useCurrent();
             $table->boolean('type')->comment('Loại giảm giá: 1. Tiền mặt, 0. Phần trăm');
             $table->float('discount', 12, 3)->comment('Giá trị được giảm');
             $table->boolean('is_active')->comment('Trạng thái sự dụng: 1. Cho phép, 0. Chặn');

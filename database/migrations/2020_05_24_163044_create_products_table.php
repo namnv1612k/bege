@@ -16,15 +16,17 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->string('name')->comment('Tên sản phẩm');
-            $table->float('price', 11, 3)->comment('Giá gốc');
-            $table->float('sale_price', 11, 3)->comment('Giá bán');
+            $table->float('price', 12, 3)->comment('Giá gốc');
+            $table->float('sale_price', 12, 3)->comment('Giá bán');
             $table->string('feature_image')->comment('Ảnh nổi bật');
             $table->integer('stocks')->comment('Số lượng sản phẩm');
             $table->string('slug')->comment('URL sản phẩm')->unique();
             $table->string('sku')->comment('Mã sản phẩm')->unique();
             $table->text('intro')->comment('Giới thiệu sản phẩm');
             $table->text('desc')->comment('Mô tả sản phẩm');
-            $table->float('rate', 1, 2)->comment('Đánh giá sao')->default(0);
+            $table->boolean('is_active')
+                ->comment('Xác thực có mở bán không: 1. Có, 0. Không')->default(1);
+            $table->float('rate', 3, 2)->comment('Đánh giá sao')->default(0);
             $table->timestamps();
         });
     }

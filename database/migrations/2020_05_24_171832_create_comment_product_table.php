@@ -19,8 +19,8 @@ class CreateCommentProductTable extends Migration
             $table->integer('created_by')->comment('ID người comment');
             $table->text('content')->comment('Nội dung comment')->nullable();
             $table->integer('rate')->comment('Đánh giá sao');
-            $table->integer('reply_for')->comment('Comment trả lời')->default(null);
-            $table->boolean('is_show')->comment('Cho phép hiện thị: 1. Có, 0. Không')->default(1);
+            $table->integer('reply_for')->comment('Comment trả lời')->nullable();
+            $table->boolean('is_active')->comment('Cho phép hiện thị: 1. Có, 0. Không')->default(1);
 
             // Foreign key
             $table->foreign('product_id')->references('id')->on('products');

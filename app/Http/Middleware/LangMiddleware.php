@@ -20,9 +20,9 @@ class LangMiddleware
         if (Session::has('language')) {
             App::setLocale(Session('language'));
         } else {
-            App::setLocale('vi');
+            App::setLocale('en');
         }
-//        dd(App::getLocale());
+
         return $next($request);
     }
 }

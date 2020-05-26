@@ -1,2 +1,3 @@
 <?php
-constant
+define('ACTIVE', 1);
+define('NOT_ACTIVE', 0);

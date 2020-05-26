@@ -38,7 +38,7 @@ Version: 1.0.0
 	30. 404
     32. My Account
 
- 
+
 ======================================================
 [ End table content ]
 =================================================== */
@@ -677,16 +677,8 @@ ul {
     z-index: 999;
 }
 
-.categori-menu-list li {
-    position: relative;
-}
-
 .ht-dropdown {
     visibility: hidden;
-}
-
-.categori-menu-list li {
-    position: relative;
 }
 
 .menu-tile {

@@ -15,12 +15,26 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->integer('id')->comment('ID user')->autoIncrement();
-            $table->string('name')->comment('Họ tên');
+            $table->string('first_name')->comment('Tên');
+            $table->string('last_name')->comment('Họ và tên đệm');
             $table->string('email')->comment('Địa chỉ email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('username')->comment('Username')->unique();
             $table->string('password')->comment('Mật khẩu');
+            $table->string('avatar')->comment('Ảnh đại diện')
+                ->default('images/avatar/avatar-default.png');
+            $table->string('phone')->comment('Số điện thoại');
+            $table->string('address')->comment('Địa chỉ')->nullable();
+            $table->integer('points')->comment('Tích điểm')->default(0);
+            $table->boolean('payment_method')
+                ->comment('Phương thức thanh toán: 0. Tiền mặt, 1. Paypal, 2. Khác')
+                ->default(0);
+            $table->boolean('is_active')->comment('Xác thực tài khoản: 1. Cho phép, 0. Chặn');
+            $table->boolean('role')
+                ->comment('Phân quyền: 0. Người dùng, 1. Quản trị viên, 2. Nhân viên')
+                ->default(0);
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken()->comment('Ghi nhớ đăng nhập');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@
                     <div class="top-bar-left">
                         <!-- welcome -->
                         <div class="welcome">
-                            <p>England's Fastest Online Shopping Destination</p>
+                            <p>{{__('header.welcome')}}</p>
                         </div>
                     </div>
                 </div>
@@ -16,35 +16,28 @@
                         <div class="wpb_wrapper">
                             <!-- my account -->
                             <div class="menu-my-account-container">
-                                <a href="#">My Account <i class="ion-ios-arrow-down"></i></a>
+                                <a>{{__('user.my_account')}} <i class="ion-ios-arrow-down"></i></a>
                                 <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="{{ route('my-account') }}">My Account</a></li>
+                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                    <li><a href="{{ route('checkout') }}">Checkout</a></li>
                                 </ul>
                             </div>
                             <div class="switcher">
                                 <!-- language-menu -->
                                 <div class="language">
-                                    <a href="#">
+                                    <a href="{{ url('language/en') }}">
                                         <img src="images/icons/en.png" alt="language-selector">English
                                         <i class="ion-ios-arrow-down"></i>
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="#">
-                                                <img src="images/icons/fr.png" alt="French">
-                                                <span>French</span>
+                                            <a href="{{ url('language/vi') }}">
+                                                <img src="images/icons/vi.png" alt="Viet Nam">
+                                                <span>Việt</span>
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
-                                <!-- currency-menu -->
-                                <div class="currency">
-                                    <a href="#">$ USD<i class="ion-ios-arrow-down"></i></a>
-                                    <ul>
-                                        <li><a href="#">€ EUR</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -62,7 +55,7 @@
                 <div class="col-xl-3 col-md-12">
                     <!-- site-logo -->
                     <div class="site-logo">
-                        <a href="index.html"><img src="images/logo/logo-black.png" alt="Nikado"></a>
+                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/logo-black.png') }}" alt="Nikado"></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-12">
@@ -80,8 +73,8 @@
                         </div>
                         <div class="header-search-form">
                             <form action="#">
-                                <input type="text" name="search" placeholder="Search product...">
-                                <input type="submit" name="submit" value="Search">
+                                <input type="text" name="search" placeholder="{{ __('input.search.placeholder') }}">
+                                <input type="submit" name="submit" value="{{ __('input.search.submit') }}">
                             </form>
                         </div>
                     </div>
@@ -90,13 +83,14 @@
                     <!-- shop-cart-menu -->
                     <div class="shop-cart-menu pull-right">
                         <ul>
-                            <li><a href="#">
-                                            <span class="cart-icon">
-                                                <i class="ion-bag"></i><sup>3</sup>
-                                            </span>
+                            <li>
+                                <a href="#">
+                                    <span class="cart-icon">
+                                        <i class="ion-bag"></i><sup>3</sup>
+                                    </span>
                                     <span class="cart-text">
-                                                <span class="cart-text-title">My cart <br> <strong>$ 145.00</strong> </span>
-                                            </span>
+                                        <span class="cart-text-title">{{ __('span.my_cart') }} <br> <strong>@money(123)</strong> </span>
+                                    </span>
                                 </a>
                                 <ul>
                                     <li>
@@ -163,175 +157,52 @@
     </div>
     <!-- Header middle area end -->
     <!-- Header bottom area start -->
-    <div class="header-bottom-area">
+    <mega-menu></mega-menu>
+    {{--<div class="header-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-xl-3 col-lg-3 hidden-md hidden-sm pull-left category-wrapper">
                     <div class="categori-menu">
-                        <span class="categorie-title">Categories</span>
+                        <span class="categorie-title">{{__('span.categorie_title')}}</span>
                         <nav>
                             <ul class="categori-menu-list menu-hidden">
-                                <li><a href="shop.html"><span><img src="images/icons/1.png" alt="menu-icon"></span>Electronics<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                    <!-- categori Mega-Menu Start -->
-                                    <ul class="ht-dropdown megamenu first-megamenu">
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Cameras</li>
-                                                <li><a href="shop.html">Cords and Cables</a></li>
-                                                <li><a href="shop.html">gps accessories</a></li>
-                                                <li><a href="shop.html">Microphones</a></li>
-                                                <li><a href="shop.html">Wireless Transmitters</a></li>
-                                            </ul>
+                                @foreach($categories as $category)
+                                    @if($category->subcategory == null)
+                                        <li>
+                                            <a href="{{ url('category/' . $category->slug) }}">
+                                        <span>
+                                            <img src="{{ $category->icon }}" alt="menu-icon">
+                                        </span>{{ $category->name }}
+                                                @if(\App\Helpers\CategoryHelper::menu_category($category->id))
+                                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                @endif
+                                            </a>
+                                            <!-- categori Mega-Menu Start -->
+                                                @if(\App\Helpers\CategoryHelper::menu_category($category->id))
+                                                    <ul class="ht-dropdown megamenu custom-megamenu">
+                                                        <!-- Single Column Start -->
+                                                        @foreach($categories as $subcategory)
+                                                            @if($subcategory->subcategory == $category->id)
+                                                                <li class="single-megamenu">
+                                                                    <ul>
+                                                                        <li class="menu-tile">{{ $subcategory->name }}</li>
+                                                                        @foreach($categories as $category_detail)
+                                                                            @if($category_detail->subcategory == $subcategory->id)
+                                                                                <li><a href="{{ url('category/' . $category_detail->slug) }}">{{ $category_detail->name }}</a></li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                        <!-- Single Column End -->
+                                                    </ul>
+                                                @endif
+                                            <!-- categori Mega-Menu End -->
                                         </li>
-                                        <!-- Single Column End -->
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Digital Cameras</li>
-                                                <li><a href="shop.html">Camera one</a></li>
-                                                <li><a href="shop.html">Camera two</a></li>
-                                                <li><a href="shop.html">Camera three</a></li>
-                                                <li><a href="shop.html">Camera four</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Digital Cameras</li>
-                                                <li><a href="shop.html">Camera one</a></li>
-                                                <li><a href="shop.html">Camera two</a></li>
-                                                <li><a href="shop.html">Camera three</a></li>
-                                                <li><a href="shop.html">Camera four</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                    </ul>
-                                    <!-- categori Mega-Menu End -->
-                                </li>
-                                <li><a href="shop.html"><span><img src="images/icons/2.png" alt="menu-icon"></span>Fashion<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                    <!-- categori Mega-Menu Start -->
-                                    <ul class="ht-dropdown megamenu megamenu-two">
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Men’s Fashion</li>
-                                                <li><a href="shop.html">Blazers</a></li>
-                                                <li><a href="shop.html">Boots</a></li>
-                                                <li><a href="shop.html">pants</a></li>
-                                                <li><a href="shop.html">Tops & Tees</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Women’s Fashion</li>
-                                                <li><a href="shop.html">Bags</a></li>
-                                                <li><a href="shop.html">Bottoms</a></li>
-                                                <li><a href="shop.html">Shirts</a></li>
-                                                <li><a href="shop.html">Tailored</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                    </ul>
-                                    <!-- categori Mega-Menu End -->
-                                </li>
-                                <li><a href="shop.html"><span><img src="images/icons/3.png" alt="menu-icon"></span>Home & Kitchen<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                    <!-- categori Mega-Menu Start -->
-                                    <ul class="ht-dropdown megamenu megamenu-two">
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Large Appliances</li>
-                                                <li><a href="shop.html">Armchairs</a></li>
-                                                <li><a href="shop.html">Bunk Bed</a></li>
-                                                <li><a href="shop.html">Mattress</a></li>
-                                                <li><a href="shop.html">Sideboard</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Small Appliances</li>
-                                                <li><a href="shop.html">Bootees Bags</a></li>
-                                                <li><a href="shop.html">Jackets</a></li>
-                                                <li><a href="shop.html">Shelf</a></li>
-                                                <li><a href="shop.html">Shoes</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                    </ul>
-                                    <!-- categori Mega-Menu End -->
-                                </li>
-                                <li><a href="shop.html"><span><img src="images/icons/4.png" alt="menu-icon"></span>Phones & Tablets<i class="fa fa-angle-right" aria-hidden="true"></i>
-                                    </a>
-                                    <!-- categori Mega-Menu Start -->
-                                    <ul class="ht-dropdown megamenu megamenu-two">
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Tablet</li>
-                                                <li><a href="shop.html">tablet one</a></li>
-                                                <li><a href="shop.html">tablet two</a></li>
-                                                <li><a href="shop.html">tablet three</a></li>
-                                                <li><a href="shop.html">tablet four</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Smartphone</li>
-                                                <li><a href="shop.html">phone one</a></li>
-                                                <li><a href="shop.html">phone two</a></li>
-                                                <li><a href="shop.html">phone three</a></li>
-                                                <li><a href="shop.html">phone four</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                    </ul>
-                                    <!-- categori Mega-Menu End -->
-                                </li>
-                                <li><a href="shop.html"><span><img src="images/icons/5.png" alt="menu-icon"></span>TV & Video<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                    <!-- categori Mega-Menu Start -->
-                                    <ul class="ht-dropdown megamenu megamenu-two">
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Gaming Desktops</li>
-                                                <li><a href="shop.html">Alpha Desktop</a></li>
-                                                <li><a href="shop.html">rober Desktop</a></li>
-                                                <li><a href="shop.html">Ultra Desktop </a></li>
-                                                <li><a href="shop.html">beta desktop</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                        <!-- Single Column Start -->
-                                        <li class="single-megamenu">
-                                            <ul>
-                                                <li class="menu-tile">Women’s Fashion</li>
-                                                <li><a href="shop.html">3D-Capable</a></li>
-                                                <li><a href="shop.html">Clearance</a></li>
-                                                <li><a href="shop.html">Free Shipping Eligible</a></li>
-                                                <li><a href="shop.html">On Sale</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Single Column End -->
-                                    </ul>
-                                    <!-- categori Mega-Menu End -->
-                                </li>
-                                <li><a href="shop.html"><span><img src="images/icons/6.png" alt="menu-icon"></span>Beauty</a>
-                                </li>
-                                <li><a href="shop.html"><span><img src="images/icons/7.png" alt="menu-icon"></span>Sport & tourism</a>
-                                </li>
-                                <li><a href="shop.html"><span><img src="images/icons/8.png" alt="menu-icon"></span>Fruits & Veggies</a></li>
-                                <li><a href="shop.html"><span><img src="images/icons/9.png" alt="menu-icon"></span>Computer & Laptop</a></li>
-                                <li><a href="shop.html"><span><img src="images/icons/10.png" alt="menu-icon"></span>Meat & Seafood</a></li>
-                                <li><a href="shop.html"><span><img src="images/icons/12.png" alt="menu-icon"></span>Samsung</a></li>
-                                <li><a href="shop.html"><span><img src="images/icons/11.png" alt="menu-icon"></span>Sanyo</a></li>
+                                    @endif
+                                @endforeach
+
                             </ul>
                         </nav>
                     </div>
@@ -349,9 +220,9 @@
                                         <li><a href="index-4.html">Home Shop 4</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="{{ route('shop') }}">Shop</a></li>
+                                <li><a href="{{ route('blog') }}">Blog</a></li>
+                                <li><a href="{{ route('about-us') }}">About Us</a></li>
                                 <li><a href="contact-us.html">Contact</a></li>
                                 <li><a href="#">Features <i class="fa fa-angle-down"></i></a>
                                     <ul class="megamenu-3-column">
@@ -448,6 +319,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
     <!-- Header bottom area end -->
 </header>

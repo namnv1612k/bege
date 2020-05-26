@@ -16,7 +16,7 @@ class CreateBlogCategoriesTable extends Migration
         Schema::create('blog_categories', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->string('name')->comment('Tên danh mục blog');
-            $table->string('slug')->comment('URL danh mục blog');
+            $table->string('slug')->comment('URL danh mục blog')->unique();
             $table->softDeletes();
             $table->timestamps();
         });

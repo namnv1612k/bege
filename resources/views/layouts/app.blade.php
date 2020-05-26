@@ -7,20 +7,18 @@
     <!-- Bege -->
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="images/icons/icon_logo.png">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/icons/icon_logo.png') }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    @if(request()->is('admin*'))
-        <!-- Css Admin -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    @else
+    <!--Style -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @if(!request()->is('admin*'))
         <!-- Css Bege -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/css-plugins-call.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bundle.css') }}">
@@ -29,8 +27,6 @@
         <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
     @endif
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/icons/icon_logo.png">
 </head>
 <body>
     <!--[if lte IE 9]>
@@ -49,13 +45,7 @@
 @if(request()->is('admin*'))
     <script src="{{ asset('js/app.js') }}" defer></script>
 @else
-    <script>window.jQuery || document.write('<script src="{{ asset('js/jquery-3.2.1.min.js') }}"><\/script>')</script>
-    <!-- Popper min js -->
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <!-- Bootstrap min js  -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <!-- nivo slider pack js  -->
-    <script src="{{ asset('js/jquery.nivo.slider.pack.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- All plugins here -->
     <script src="{{ asset('js/plugins.js') }}"></script>
     <!-- Main js  -->

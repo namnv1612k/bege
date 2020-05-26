@@ -19,6 +19,10 @@ class CreateOrderDetailTable extends Migration
             $table->integer('product_id')->comment('ID sản phẩm');
             $table->integer('quantity')->comment('Số lượng sản phẩm');
             $table->timestamps();
+
+            // Foreign key
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

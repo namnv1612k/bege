@@ -17,3 +17,40 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+/* Language */
+Route::get('/language/{language}', 'LangController@setLanguage');
+
+/* Frontend */
+Route::group(['namespace' => 'Frontend'], function () {
+
+    /* User */
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('my-account', 'UserController@info')->name('my-account');
+
+    });
+
+    /* Shop */
+    Route::group([], function() {
+        Route::get('shop', 'ProductController@shop')->name('shop');
+    });
+
+    /* Payment */
+    Route::get('cart', 'PaymentController@cart')->name('cart');
+    Route::get('checkout', 'PaymentController@checkout')->name('checkout');
+
+    /* Blog */
+    Route::group([], function () {
+        Route::get('blog', 'BlogController@index')->name('blog');
+    });
+
+    /* About Us */
+    Route::get('about-us', function () {
+        return view('about-us/index');
+    })->name('about-us');
+});
+
+/* Fallback */
+Route::fallback(function () {
+    return view('errors/404');
+});

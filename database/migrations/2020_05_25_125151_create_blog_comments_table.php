@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentBlogTable extends Migration
+class CreateBlogCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCommentBlogTable extends Migration
      */
     public function up()
     {
-        Schema::create('comment_blog', function (Blueprint $table) {
+        Schema::create('blog_comments', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->text('content')->comment('Nội dung comment');
             $table->boolean('is_active')->comment('Cho phép hiện thị: 1. Có, 0. Không')

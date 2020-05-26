@@ -16,11 +16,11 @@ class CreateBlogsTable extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->string('name')->comment('Tên bài viết');
-            $table->string('slug')->comment('URL bài viết');
+            $table->string('slug')->comment('URL bài viết')->unique();
             $table->string('feature_image')->comment('Ảnh nổi bật');
             $table->text('content')->comment('Nội dung bài viết');
             $table->integer('created_by')->comment('ID người tạo');
-            $table->boolean('is_show')->comment('Cho phép hiện thị: 0. Chặn, 1. Cho phép');
+            $table->boolean('is_active')->comment('Cho phép hiện thị: 0. Chặn, 1. Cho phép');
             $table->timestamps();
 
             // Foreign key

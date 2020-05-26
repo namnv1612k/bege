@@ -23,5 +23,14 @@
         "sass-loader": "^8.0.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "font-awesome": "^4.7.0",
+        "ionicons": "^5.0.1",
+        "laravel-echo": "^1.8.0",
+        "nivo-slider": "^3.2.0",
+        "pusher-js": "^6.0.3",
+        "vuetify": "^2.2.29",
+        "vuex": "^3.4.0"
     }
 }
