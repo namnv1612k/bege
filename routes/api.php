@@ -18,6 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('Frontend')->group(function ()  {
-    Route::get('megamenu', 'CategoryController@meganenu')->name('megamenu');
-});
+Route::get('megacategory', 'Frontend\CategoryController@megacategory')->name('megacategory');
+Route::get('header-cate', 'Frontend\CategoryController@cate_header')->name('cate-header');

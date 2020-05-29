@@ -1,0 +1,4 @@
+<?php
+return [
+    'subtotal' => 'Subtotal'
+];

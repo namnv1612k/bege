@@ -22,13 +22,14 @@ class CreateUsersTable extends Migration
             $table->string('password')->comment('Mật khẩu');
             $table->string('avatar')->comment('Ảnh đại diện')
                 ->default('images/avatar/avatar-default.png');
-            $table->string('phone')->comment('Số điện thoại');
+            $table->string('phone')->comment('Số điện thoại')->nullable();
             $table->string('address')->comment('Địa chỉ')->nullable();
             $table->integer('points')->comment('Tích điểm')->default(0);
             $table->boolean('payment_method')
                 ->comment('Phương thức thanh toán: 0. Tiền mặt, 1. Paypal, 2. Khác')
                 ->default(0);
-            $table->boolean('is_active')->comment('Xác thực tài khoản: 1. Cho phép, 0. Chặn');
+            $table->boolean('is_active')->comment('Xác thực tài khoản: 1. Cho phép, 0. Chặn')
+                ->default(1);
             $table->boolean('role')
                 ->comment('Phân quyền: 0. Người dùng, 1. Quản trị viên, 2. Nhân viên')
                 ->default(0);

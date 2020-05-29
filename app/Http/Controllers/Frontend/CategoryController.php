@@ -8,14 +8,23 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function meganenu()
+    public function megacategory()
     {
         try {
             $categories = Category::all()->where('is_active', '=', ACTIVE);
-            dd(response()->json($categories));
             return response()->json($categories);
         } catch (\Exception $exception){
-            return response()->json(['status' => 'fail']);
+            return response()->json(['status' => 'fail'], 502);
+        }
+    }
+
+    public function cate_header()
+    {
+        try {
+            $cate_header = Category::all()->where('is_active', '=',ACTIVE)->random(5);
+            return response()->json($cate_header);
+        } catch (\Exception $exception) {
+            return response()->json($exception);
         }
     }
 }

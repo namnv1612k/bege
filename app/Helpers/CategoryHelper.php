@@ -8,13 +8,17 @@ class CategoryHelper
 {
     public static function menu_category($id)
     {
-        $array = Category::all()->where('is_active', '=', ACTIVE);
-        $resp = false;
-        foreach ($array as $value) {
-            if ($value->subcategory == $id) {
-                $resp = true;
+        try {
+            $array = Category::all()->where('is_active', '=', ACTIVE);
+            $resp = false;
+            foreach ($array as $value) {
+                if ($value->subcategory == $id) {
+                    $resp = true;
+                }
             }
+            return $resp;
+        } catch (\Exception $exception) {
+            return $exception;
         }
-        return $resp;
     }
 }

@@ -19,11 +19,11 @@ class CreateOrdersTable extends Migration
             $table->boolean('payment_method')
                 ->comment('Phương thức thanh toán: 0. Tiền mặt, 1. Paypal');
             $table->boolean('status')->comment('Trạng thái: 1. Đã thanh toán, 0. Chưa thanh toán');
-            $table->integer('created_by')->comment('Người tạo');
+            $table->integer('user_id')->comment('Người tạo');
             $table->timestamps();
 
             // Foreign key
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

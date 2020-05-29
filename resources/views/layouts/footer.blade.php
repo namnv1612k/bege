@@ -6,14 +6,14 @@
                 <div class="col-sm-12 col-md-12 col-xl-12">
                     <div class="newsletter-text">
                         <div class="icon"><i class="icon ion-email"></i></div>
-                        <h3>Sign Up To Newsletter</h3>
-                        <h4>..and Receive $29 Coupon For First Shopping</h4>
+                        <h3>{{__('footer.new_letter.title')}}</h3>
+                        <h4>{{__('footer.new_letter.content')}}</h4>
                     </div>
                     <div class="newsletter">
                         <div class="newsletter-box">
                             <form action="#">
-                                <input class="subscribe" placeholder="your email address" name="email" id="subscribe" type="email">
-                                <button type="submit" class="submit">subscribe!</button>
+                                <input class="subscribe" placeholder="{{__('input.subscribe.placeholder')}}" name="email" id="subscribe" type="email">
+                                <button type="submit" class="submit">{{__('input.subscribe.submit')}}</button>
                             </form>
                         </div>
                     </div>
@@ -30,45 +30,45 @@
                     <div class="footer-logo-area">
                         <ul>
                             <li>
-                                <h4>Contact info:</h4>
-                                <p>169-C, Technohub, Dubai Silicon Oasis.</p>
+                                <h4>{{__('footer.contact_info')}}</h4>
+                                <p>{{ config('info.address') }}</p>
                             </li>
                             <li>
-                                <h4>Telephone:</h4>
-                                <p>(+011) 123 777 8888 - (+011) 123 888 9999</p>
+                                <h4>{{__('footer.tel')}}</h4>
+                                <p>{{ config('info.tel') }}</p>
                             </li>
                             <li>
-                                <h4>Email:</h4>
-                                <p>Support@example.com</p>
+                                <h4>{{__('footer.mail')}}</h4>
+                                <p>{{ config('info.mail') }}</p>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3 col-md-3 col-xs-12">
                     <div class="footer-menu">
-                        <h3>Customer Service</h3>
+                        <h3>{{__('footer.custom_service')}}</h3>
                         <ul>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="{{ route('contact') }}">{{__('page.contact.title')}}</a></li>
                             <li><a href="#">Returns</a></li>
                             <li><a href="#">Order History</a></li>
                             <li><a href="#">Site Map</a></li>
                             <li><a href="#">Testimonials</a></li>
-                            <li><a href="#">My Account</a></li>
+                            <li><a href="{{ route('my-account') }}">{{__('page.my_account.title')}}</a></li>
                             <li><a href="#">Unsubscribe Notification</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3 col-md-3 col-xs-12">
                     <div class="footer-menu">
-                        <h3>Information</h3>
+                        <h3>{{__('footer.information')}}</h3>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Warranty</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Seller Login</a></li>
+                            <li><a href="#">{{__('page.about_us.title')}}</a></li>
+                            <li><a href="#">{{__('page.delivery_information.title')}}</a></li>
+                            <li><a href="#">{{__('page.privacy_policy.title')}}</a></li>
+                            <li><a href="#">{{__('page.terms_conditions.title')}}</a></li>
+                            <li><a href="#">{{__('page.warranty.title')}}</a></li>
+                            <li><a href="{{ route('faq') }}">{{__('page.faq.title')}}</a></li>
+                            <li><a href="#">{{__('page.seller_login.title')}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -76,12 +76,12 @@
                     <div class="footer-menu">
                         <h3>Extras</h3>
                         <ul>
-                            <li><a href="#">Brands</a></li>
-                            <li><a href="#">Gift Vouchers</a></li>
-                            <li><a href="#">Affiliates</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Order History</a></li>
-                            <li><a href="#">Track Your Order</a></li>
+                            <li><a href="#">{{__('page.brands.title')}}</a></li>
+                            <li><a href="#">{{__('page.voucher.gift')}}</a></li>
+                            <li><a href="#">{{__('page.affiliates.title')}}</a></li>
+                            <li><a href="#">{{__('page.wish_list.title')}}</a></li>
+                            <li><a href="#">{{__('page.order.history')}}</a></li>
+                            <li><a href="#">{{__('page.order.track')}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -94,10 +94,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-lg-6 col-md-6">
-                    <p>Copyright © 2018 Bege . All Rights Reserved.</p>
+                    <p>{{ config('info.copyright') }}</p>
                 </div>
                 <div class="col-sm-12 col-lg-6 col-md-6 pull-right">
-                    <img src="images/icons/payment-icon.png" alt="payment icon">
+                    <img src="{{ ('images/icons/payment-icon.png') }}" alt="payment icon">
                 </div>
             </div>
         </div>

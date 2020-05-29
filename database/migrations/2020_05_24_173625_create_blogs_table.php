@@ -19,12 +19,12 @@ class CreateBlogsTable extends Migration
             $table->string('slug')->comment('URL bài viết')->unique();
             $table->string('feature_image')->comment('Ảnh nổi bật');
             $table->text('content')->comment('Nội dung bài viết');
-            $table->integer('created_by')->comment('ID người tạo');
+            $table->integer('user_id')->comment('ID người tạo');
             $table->boolean('is_active')->comment('Cho phép hiện thị: 0. Chặn, 1. Cho phép');
             $table->timestamps();
 
             // Foreign key
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ContactController extends Controller
 {
-    public function info()
+    public function index()
     {
-        return view('user/my-account');
+        return view('contact-us/index');
     }
 }

@@ -30,6 +30,6 @@ class CreateRelationBlogVsTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ralation_blog_vs_tag');
+        Schema::dropIfExists('relation_blog_vs_tag');
     }
 }

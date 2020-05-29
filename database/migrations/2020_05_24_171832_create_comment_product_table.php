@@ -16,7 +16,7 @@ class CreateCommentProductTable extends Migration
         Schema::create('comment_product', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->integer('product_id')->comment('ID sản phẩm');
-            $table->integer('created_by')->comment('ID người comment');
+            $table->integer('user_id')->comment('ID người comment');
             $table->text('content')->comment('Nội dung comment')->nullable();
             $table->integer('rate')->comment('Đánh giá sao');
             $table->integer('reply_for')->comment('Comment trả lời')->nullable();
@@ -24,7 +24,7 @@ class CreateCommentProductTable extends Migration
 
             // Foreign key
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

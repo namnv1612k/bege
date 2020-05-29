@@ -48,6 +48,19 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('about-us', function () {
         return view('about-us/index');
     })->name('about-us');
+
+    /* Contact */
+    Route::get('contact', 'ContactController@index')->name('contact');
+
+    /* Cart */
+    Route::get('cart', 'CartController@index')->name('cart');
+
+    /* Faq */
+    Route::get('faq', 'FaqController@index')->name('faq');
+});
+
+Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'namespace' => 'Backend'], function () {
+    Route::get('/', 'DashboardController@index')->name('admin');
 });
 
 /* Fallback */

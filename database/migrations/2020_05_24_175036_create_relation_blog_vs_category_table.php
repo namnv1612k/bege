@@ -30,6 +30,6 @@ class CreateRelationBlogVsCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ralation_blog_vs_category');
+        Schema::dropIfExists('relation_blog_vs_category');
     }
 }
