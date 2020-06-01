@@ -16,6 +16,7 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->string('name')->comment('Tên tag')->unique();
+            $table->string('slug')->comment('URL')->unique();
             $table->softDeletes();
         });
     }

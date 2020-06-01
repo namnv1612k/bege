@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\Slide;
 
 class HomeController extends Controller
 {
@@ -24,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::all()->where('is_active', '=', ACTIVE);
-        return view('home', compact('categories'));
+        $slides = Slide::all()->where('is_active', '=', ACTIVE)->sortBy('sort');
+        return view('home', compact('slides'));
     }
 }

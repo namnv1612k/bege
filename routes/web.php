@@ -59,7 +59,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('faq', 'FaqController@index')->name('faq');
 });
 
-Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'namespace' => 'Backend'], function () {
+Route::group(['middleware' => 'employee', 'prefix' => 'admin', 'namespace' => 'Backend'], function () {
     Route::get('/', 'DashboardController@index')->name('admin');
 });
 

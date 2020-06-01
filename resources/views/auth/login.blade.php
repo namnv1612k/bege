@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <nav class="woocommerce-breadcrumb">
-                    <a href="{{ route('home') }}">{{__('KEY_NAME')}}</a>
-                    <span class="separator">/</span> sign in
+                    <a href="{{ route('home') }}">{{__('page.home.title')}}</a>
+                    <span class="separator">/</span> {{ __('page.login.title_2') }}
                 </nav>
             </div>
         </div>
@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="entry-title">Sign In</h1>
+                <h1 class="entry-title">{{ __('page.login.title_2') }}</h1>
             </div>
         </div>
     </div>
@@ -27,38 +27,36 @@
 <div class="login-page-area">
     <div class="container">
         <div class="login-area">
-            <!-- New Customer Start -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="well mb-sm-30">
                         <div class="new-customer">
-                            <h3 class="custom-title">new customer</h3>
-                            <p class="mtb-10"><strong>Register</strong></p>
-                            <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made</p>
-                            <a class="customer-btn" href="register.html">continue</a>
+                            <h3 class="custom-title">{{ __('page.login.content.new_customer') }}</h3>
+                            <p class="mtb-10"><strong>{{ __('page.register.title') }}</strong></p>
+                            <p>{{ __('page.login.content.desc') }}</p>
+                            <a class="customer-btn" href="{{ route('register') }}">{{ __('page.login.content.continue') }}</a>
                         </div>
                     </div>
                 </div>
-                <!-- New Customer End -->
-                <!-- Returning Customer Start -->
+
                 <div class="col-md-6">
                     <div class="well">
                         <div class="return-customer">
-                            <h3 class="mb-10 custom-title">returning customer</h3>
-                            <p class="mb-10"><strong>I am a returning customer</strong></p>
+                            <h3 class="mb-10 custom-title">{{ __('page.login.return.title') }}</h3>
+                            <p class="mb-10"><strong>{{ __('page.login.return.desc') }}</strong></p>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="text" name="email" placeholder="Enter your email address..." id="input-email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
-                                    @error('email')
+                                    <label>{{ __('input.login.typeLogin.label') }}</label>
+                                    <input type="text" name="login" placeholder="{{ __('input.login.typeLogin.placeholder') }}" id="input-email" class="form-control @error('email' || 'username') is-invalid @enderror" value="{{ old('email') ?: old('username') }}">
+                                    @error('email' || 'username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
+                                    <label>{{ __('input.login.password.label') }}</label>
                                     <input type="text" name="password" placeholder="Password" id="input-password" class="form-control @error('password') is-invalid @enderror">
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -71,17 +69,16 @@
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
+                                            {{ __('input.login.remember.label') }}
                                         </label>
                                     </div>
                                 </div>
-                                <p class="lost-password"><a href="{{ route('password.request') }}">Forgot password?</a></p>
-                                <input type="submit" value="Login" class="return-customer-btn">
+                                <p class="lost-password"><a href="{{ route('password.request') }}">{{ __('input.login.forgot_password.label') }}</a></p>
+                                <input type="submit" value="{{ __('page.login.submit') }}" class="return-customer-btn">
                             </form>
                         </div>
                     </div>
                 </div>
-                <!-- Returning Customer End -->
             </div>
         </div>
     </div>

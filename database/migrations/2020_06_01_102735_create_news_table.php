@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFaqTable extends Migration
+class CreateNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,18 @@ class CreateFaqTable extends Migration
      */
     public function up()
     {
-        Schema::create('faq', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->string('title')->comment('Tiêu đề');
-            $table->text('content')->comment('Nội dung Faq');
+            $table->string('content')->comment('Nội dung');
+            $table->string('image')->comment('Ảnh hiện thị');
             $table->boolean('is_active')->comment('Trạng thái hiện thị: 1. Có, 0. Không')->default(1);
-            $table->softDeletes();
+            $table->integer('sort')->comment('Thứ tự hiện thị')->default(1);
+            $table->integer('product_id')->comment('ID sản phẩm');
             $table->timestamps();
+
+            // Foreign key
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -30,6 +35,6 @@ class CreateFaqTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faq');
+        Schema::dropIfExists('news');
     }
 }

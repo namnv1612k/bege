@@ -1,5 +1,4 @@
 <header class="header-area">
-    <!-- Header top area start -->
     <div class="header-top-area">
         <div class="container">
             <div class="row">
@@ -26,12 +25,12 @@
                                 <a>{{ __('user.my_account') }} <i class="ion-ios-arrow-down"></i></a>
                                 <ul>
                                     @if(Auth::check())
-                                        @if(Auth::user()->role == ADMIN)
+                                        @if(Auth::user()->role == ADMIN || Auth::user()->role == EMPLOYEE)
                                             <li><a class="text-danger" href="{{ route('admin') }}">{{ __('page.admin.title') }}</a></li>
                                         @endif
                                         <li><a href="{{ route('my-account') }}">{{ __('page.my_account.title') }}</a></li>
                                         <li><a href="{{ route('checkout') }}">{{ __('page.checkout.title') }}</a></li>
-                                        <li><a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
                                             <form action="{{ route('logout') }}" method="post" style="display: none" id="logout-form">
                                                 @csrf
                                             </form>
@@ -45,14 +44,14 @@
                                 <!-- language-menu -->
                                 <div class="language">
                                     <a href="{{ url('language/en') }}">
-                                        <img src="images/icons/en.png" alt="language-selector">English
+                                        <img src="{{ asset('images/icons/en.png') }}" alt="language-selector">{{ __('header.lang.english') }}
                                         <i class="ion-ios-arrow-down"></i>
                                     </a>
                                     <ul>
                                         <li>
                                             <a href="{{ url('language/vi') }}">
-                                                <img src="images/icons/vi.png" alt="Viet Nam">
-                                                <span>Việt</span>
+                                                <img src="{{ asset('images/icons/vi.png') }}" alt="Viet Nam">
+                                                <span>{{ __('header.lang.vietnam') }}</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -64,19 +63,16 @@
             </div>
         </div>
     </div>
-    <!-- Top bar area end -->
-    <!-- Header middle area start -->
+
     <div class="header-middle-area">
         <div class="container">
             <div class="row">
                 <div class="col-xl-3 col-md-12">
-                    <!-- site-logo -->
                     <div class="site-logo">
                         <a href="{{ route('home') }}"><img src="{{ asset('images/logo/logo-black.png') }}" alt="Logo"></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-12">
-                    <!-- header-search -->
                     <div class="header-search clearfix">
                         <div class="header-search-form">
                             <form action="#">
@@ -87,7 +83,6 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-12">
-                    <!-- shop-cart-menu -->
                     <div class="shop-cart-menu pull-right">
                         <ul>
                             <li>
@@ -101,7 +96,6 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <!-- single-shop-cart-wrapper -->
                                         <div class="single-shop-cart-wrapper">
                                             <div class="shop-cart-img">
                                                 <a href="#"><img src="images/product/1.jpg" alt="Image of Product"></a>
@@ -109,13 +103,12 @@
                                             <div class="shop-cart-info">
                                                 <h5><a href="{{ route('cart') }}">sport t-shirt men</a></h5>
                                                 <span class="price">£515.00</span>
-                                                <span class="quantaty">Qty: 1</span>
+                                                <span class="quantaty">{{ __('cart.qty') }} 1</span>
                                                 <span class="cart-remove"><a href="#"><i class="fa fa-times"></i></a></span>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
-                                        <!-- shop-cart-total -->
                                         <div class="shop-cart-total">
                                             <p>{{ __('cart.subtotal') }}: <span class="pull-right">£880.00</span></p>
                                         </div>
@@ -134,8 +127,7 @@
             </div>
         </div>
     </div>
-    <!-- Header middle area end -->
-    <!-- Header bottom area start -->
+
     <div class="header-bottom-area">
         <div class="container">
             <div class="row">
@@ -146,7 +138,6 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <!-- main-menu -->
                     <div class="main-menu">
                         <nav>
                             <ul>
@@ -244,5 +235,4 @@
             </div>
         </div>
     </div>
-    <!-- Header bottom area end -->
 </header>

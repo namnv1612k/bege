@@ -25,9 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('phone')->comment('Số điện thoại')->nullable();
             $table->string('address')->comment('Địa chỉ')->nullable();
             $table->integer('points')->comment('Tích điểm')->default(0);
-            $table->boolean('payment_method')
-                ->comment('Phương thức thanh toán: 0. Tiền mặt, 1. Paypal, 2. Khác')
-                ->default(0);
             $table->boolean('is_active')->comment('Xác thực tài khoản: 1. Cho phép, 0. Chặn')
                 ->default(1);
             $table->boolean('role')

@@ -27,4 +27,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\Album');
     }
+
+    public function supplier()
+    {
+        return $this->belongsTo('App\Models\Supplier');
+    }
 }

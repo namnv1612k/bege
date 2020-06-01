@@ -8,46 +8,31 @@
             <!-- slider start -->
             <div class="slider-inner">
                 <div id="mainSlider" class="nivoSlider nevo-slider">
-                    <img src="images/slider/home4-slider1.jpg" alt="main slider" title="#htmlcaption1"/>
-                    <img src="images/slider/home4-slider2.jpg" alt="main slider" title="#htmlcaption2"/>
+                    @foreach($slides as $key => $slide)
+                        <img src="{{ $slide->image }}" alt="main slider" title="#htmlcaption{{ $key }}"/>
+                    @endforeach
                 </div>
 
-                <div id="htmlcaption1" class="nivo-html-caption slider-caption">
-                    <div class="slider-progress"></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="slider-content slider-content-1 slider-animated-1">
-                                    <h1 class="hone">INNOVATIVE</h1>
-                                    <h1 class="htwo">SMARTER</h1>
-                                    <h1 class="hthree">BRIGHTER</h1>
-                                    <h3>40” SkyHi Smart Package</h3>
-                                    <div class="button-1 hover-btn-2">
-                                        <a href="shop.html">SHOP NOW</a>
+                @foreach($slides as $key => $slide)
+                    <div id="htmlcaption{{ $key }}" class="nivo-html-caption slider-caption">
+                        <div class="slider-progress"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="slider-content slider-content-1 slider-animated-1">
+                                        <h1 class="hone">{{ $slide->title_1 }}</h1>
+                                        <h1 class="htwo">{{ $slide->title_2 }}</h1>
+                                        <h1 class="hthree">{{ $slide->title_3 }}</h1>
+                                        <h3>{{ $slide->content }}</h3>
+                                        <div class="button-1 hover-btn-2">
+                                            <a href="{{ $slide->url }}">{{ __('slide.button') }}</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="htmlcaption2" class="nivo-html-caption slider-caption">
-                    <div class="slider-progress"></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="slider-content slider-content-2 slider-animated-2">
-                                    <h1 class="hone">DRONE DIY</h1>
-                                    <h1 class="htwo">WORKSHOP</h1>
-                                    <h3 class="h3one">Build & Fly</h3>
-                                    <h3 class="h3two">Your Own drone!</h3>
-                                    <div class="button-1 hover-btn-1">
-                                        <a href="shop.html">SHOP NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
             <!-- slider end -->

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentProductTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateCommentProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('comment_product', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
-            $table->integer('product_id')->comment('ID sản phẩm');
-            $table->integer('user_id')->comment('ID người comment');
             $table->text('content')->comment('Nội dung comment')->nullable();
             $table->integer('rate')->comment('Đánh giá sao');
             $table->integer('reply_for')->comment('Comment trả lời')->nullable();
+            $table->integer('product_id')->comment('ID sản phẩm');
+            $table->integer('user_id')->comment('ID người comment');
             $table->boolean('is_active')->comment('Cho phép hiện thị: 1. Có, 0. Không')->default(1);
 
             // Foreign key
@@ -36,6 +36,6 @@ class CreateCommentProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment_product');
+        Schema::dropIfExists('comments');
     }
 }

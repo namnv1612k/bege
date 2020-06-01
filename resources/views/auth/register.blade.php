@@ -82,7 +82,7 @@
                             <div class="form-group d-md-flex align-items-md-center">
                                 <label class="control-label col-md-2" for="username"><span class="require">*</span>Username:</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Username" name="username">
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Username" name="username" value="{{ old('username') }}">
                                     @error('username')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

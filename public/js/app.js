@@ -1974,14 +1974,10 @@ __webpack_require__.r(__webpack_exports__);
       categories: []
     };
   },
-
-  /*created() {
-    console.log(this.categories)
-  },*/
   mounted: function mounted() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/megacategory').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/category/megacategory').then(function (response) {
       return _this.categories = response.data;
     })["catch"](function (response) {
       console.log(response);
@@ -1989,15 +1985,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     subcate: function subcate(id) {
-      var $return = false;
-
       for (var i = 0; i < this.categories.length; i++) {
         if (id === this.categories[i].subcategory) {
-          $return = true;
+          return true;
         }
       }
 
-      return $return;
+      return false;
     }
   }
 });

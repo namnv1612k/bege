@@ -16,6 +16,7 @@ class CreateBlogTagsTable extends Migration
         Schema::create('blog_tags', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->string('name')->comment('Tên tag blog')->unique();
+            $table->string('slug')->comment('URL')->unique();
             $table->softDeletes();
         });
     }

@@ -16,6 +16,7 @@ class CreateBlogCommentsTable extends Migration
         Schema::create('blog_comments', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
             $table->text('content')->comment('Nội dung comment');
+            $table->integer('reply_for')->comment('Comment trả lời')->nullable();
             $table->boolean('is_active')->comment('Cho phép hiện thị: 1. Có, 0. Không')
                 ->default(1);
             $table->integer('user_id')->comment('ID người tạo');

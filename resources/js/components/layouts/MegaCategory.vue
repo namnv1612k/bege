@@ -31,11 +31,8 @@
                 categories: []
             }
         },
-        /*created() {
-          console.log(this.categories)
-        },*/
         mounted() {
-            axios.get('api/megacategory')
+            axios.get('api/category/megacategory')
                 .then(response => (this.categories = response.data))
                 .catch(function (response) {
                     console.log(response)
@@ -43,13 +40,12 @@
         },
         methods: {
             subcate(id){
-                let $return = false;
                 for (let i = 0; i < this.categories.length; i++) {
                     if (id === this.categories[i].subcategory) {
-                        $return = true
+                        return true
                     }
                 }
-                return $return;
+                return false;
             }
         }
     }

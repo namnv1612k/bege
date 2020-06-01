@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 /* Frontend */
-Route::group(['namespace' => 'Frontend'], function () {
+Route::group(['namespace' => 'Api', 'prefix' => 'category'], function () {
     Route::get('megacategory', 'CategoryController@megacategory')->name('megacategory');
 });
