@@ -48,8 +48,8 @@
                                 @csrf
                                 <div class="form-group">
                                     <label>{{ __('input.login.typeLogin.label') }}</label>
-                                    <input type="text" name="login" placeholder="{{ __('input.login.typeLogin.placeholder') }}" id="input-email" class="form-control @error('email' || 'username') is-invalid @enderror" value="{{ old('email') ?: old('username') }}">
-                                    @error('email' || 'username')
+                                    <input type="text" name="login" placeholder="{{ __('input.login.typeLogin.placeholder') }}" id="input-email" class="form-control @error('email' ?: 'username') is-invalid @enderror" value="{{ old('email') ?: old('username') }}">
+                                    @error('email' ?: 'username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

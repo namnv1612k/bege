@@ -15,7 +15,7 @@ class TagBlogSeeder extends Seeder
     {
         $faker = \Faker\Factory::create('vi_VN');
         for ($i = 0; $i < 20; $i++) {
-            $name = $faker->text(10);
+            $name = $faker->text(10) . $i;
             DB::table('blog_tags')->insert([
                 'name' => $name,
                 'slug' => Str::slug($name)

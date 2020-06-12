@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Wishlist');
     }
+
+    public function credit_card()
+    {
+        return $this->hasOne('App\Models\CreditCard');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
 }

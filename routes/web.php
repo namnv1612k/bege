@@ -59,8 +59,11 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('faq', 'FaqController@index')->name('faq');
 });
 
+/* Backend */
 Route::group(['middleware' => 'employee', 'prefix' => 'admin', 'namespace' => 'Backend'], function () {
     Route::get('/', 'DashboardController@index')->name('admin');
+
+    Route::get('/product', 'ProductController@list')->name('product-list-admin');
 });
 
 /* Fallback */

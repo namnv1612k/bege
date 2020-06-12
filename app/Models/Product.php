@@ -32,4 +32,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Supplier');
     }
+
+    public function news()
+    {
+        return $this->hasOne('App\Models\News');
+    }
 }

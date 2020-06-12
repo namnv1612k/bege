@@ -17,15 +17,14 @@
 
     <!--Style -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    @if(!request()->is('admin*'))
-        <!-- Css Bege -->
-        <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/css-plugins-call.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/bundle.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
-    @endif
+
+    <!-- Css Bege -->
+    <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/css-plugins-call.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
 
 </head>
 <body>
@@ -41,15 +40,10 @@
     </div>
 </body>
 
-<!-- Scripts -->
-@if(request()->is('admin*'))
-    <script src="{{ asset('js/app.js') }}" defer></script>
-@else
-    <script src="{{ asset('js/app.js') }}"></script>
-    <!-- All plugins here -->
-    <script src="{{ asset('js/plugins.js') }}"></script>
-    <!-- Main js  -->
-    <script src="{{ asset('js/main.js') }}"></script>
-@endif
+<script src="{{ asset('js/app.js') }}"></script>
+<!-- All plugins here -->
+<script src="{{ asset('js/plugins.js') }}"></script>
+<!-- Main js  -->
+<script src="{{ asset('js/main.js') }}"></script>
 
 </html>

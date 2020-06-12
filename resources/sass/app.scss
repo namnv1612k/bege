@@ -8,30 +8,18 @@
 @import '~bootstrap/scss/bootstrap';
 
 // Jquery UI
-@import '~jquery-ui/themes/base/all.css';
+//@import '~jquery-ui/themes/base/all.css';
 
 // Font Awesome
 @import '~font-awesome';
 
 /* Custom theme bege */
-.categori-menu-list {
-    > li ul.custom-megamenu {
-        width: auto;
-        > .single-megamenu {
-            width: auto;
-        }
-    }
-}
-.single-megamenu ul li {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-span.custom-social-icon {
-    margin-left: 5%;
-
-}
-a.social-icon {
-     margin-left: 2%;
- }
+@import 'frontend';
 /* Custom theme bege end */
+
+/* Custom theme admin start */
+//@import 'backend';
+/* Custom theme admin end */
+
+// Plugins
+@import '~perfect-scrollbar';

@@ -44,19 +44,25 @@
     <div class="home-four-banner-area">
         <div class="container">
             <div class="row">
-                <div class="four-fast col-sm-6 col-lg-3 col-md-6 col-xs-12">
-                    <div class="four-single-banner-text">
-                        <div class="four-banner-img">
-                            <a href="#">
-                                <img src="images/banner/home4-banner1-1.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="four-banner-text">
-                            <h3>Best Camera Under $500</h3>
+
+{{--                @php($key = 0)--}}
+                @foreach($news as $key => $value)
+{{--                    @php($key++)--}}
+                    <div class="col-sm-6 col-lg-3 col-md-6 col-xs-12 @if($key+1 == 1) four-fast @elseif ($key+1 == 4) four-last @else @endif">
+                        <div class="four-single-banner-text">
+                            <div class="four-banner-img">
+                                <a href="#">
+                                    <img src="{{ $value->image }}" alt="">
+                                </a>
+                            </div>
+                            <div class="four-banner-text">
+                                <h3>{{ $value->title }}</h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-lg-3 col-md-6 col-xs-12">
+                @endforeach
+
+                {{--<div class="col-sm-6 col-lg-3 col-md-6 col-xs-12">
                     <div class="four-single-banner-text">
                         <div class="four-banner-img">
                             <a href="#">
@@ -91,7 +97,7 @@
                             <h3>Best TV Under $800</h3>
                         </div>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
     </div>
