@@ -25,15 +25,22 @@
     },
     "dependencies": {
         "apexcharts": "^3.19.2",
+        "collect.js": "^4.27.3",
         "datatables": "^1.10.18",
         "font-awesome": "^4.7.0",
         "ionicons": "^5.0.1",
+        "jquery-validation": "^1.19.2",
         "jquery.nicescroll": "^3.7.6",
         "laravel-echo": "^1.8.0",
         "modernizr": "^3.11.2",
         "nivo-slider": "^3.2.0",
+        "numeral": "^2.0.6",
         "perfect-scrollbar": "^1.5.0",
         "pusher-js": "^6.0.3",
+        "toastr": "^2.1.4",
+        "vue-infinite-loading": "^2.4.5",
+        "vue-infinite-scroll": "^2.0.2",
+        "vue-resource": "^1.5.1",
         "vuetify": "^2.2.33",
         "vuex": "^3.4.0"
     }

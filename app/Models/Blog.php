@@ -15,11 +15,16 @@ class Blog extends Model
 
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Tag', 'relation_blog_vs_tag', 'blog_id', 'tag_id');
+        return $this->belongsToMany('App\Models\BlogTag', 'relation_blog_vs_tag', 'blog_id', 'tag_id');
     }
 
     public function comments()
     {
         return $this->hasMany('App\Models\BlogComment');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }

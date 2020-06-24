@@ -33,15 +33,19 @@ Route::group(['namespace' => 'Frontend'], function () {
     /* Shop */
     Route::group([], function() {
         Route::get('shop', 'ProductController@shop')->name('shop');
+        Route::get('product/{slug}', 'ProductController@detail')->name('product');
+        Route::get('product/quickview/{id}', 'ProductController@quickview')->name('quickview');
+
     });
 
     /* Payment */
     Route::get('cart', 'PaymentController@cart')->name('cart');
-    Route::get('checkout', 'PaymentController@checkout')->name('checkout');
+    Route::get('checkout', 'PaymentController@show')->name('checkout');
 
     /* Blog */
-    Route::group([], function () {
-        Route::get('blog', 'BlogController@index')->name('blog');
+    Route::group(['prefix' => 'blog'], function () {
+        Route::get('/', 'BlogController@index')->name('blog');
+        Route::get('/{slug}', 'BlogController@detail')->name('blog-detail');
     });
 
     /* About Us */
@@ -51,6 +55,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     /* Contact */
     Route::get('contact', 'ContactController@index')->name('contact');
+    Route::post('contact/sendMail', 'ContactController@sendMail')->name('contact-mail');
 
     /* Cart */
     Route::get('cart', 'CartController@index')->name('cart');
@@ -60,10 +65,22 @@ Route::group(['namespace' => 'Frontend'], function () {
 });
 
 /* Backend */
-Route::group(['middleware' => 'employee', 'prefix' => 'admin', 'namespace' => 'Backend'], function () {
-    Route::get('/', 'DashboardController@index')->name('admin');
+Route::group(['middleware' => 'employee', 'prefix' => 'admin', 'namespace' => 'Backend', 'name' => 'admin'], function () {
+    Route::get('/', function () {
+        return redirect(route('admin-analytic'));
+    })->name('admin');
+    // Dashboard
+    Route::get('/analytics', 'DashboardController@index')->name('admin-analytic');
+    Route::get('/sales', 'DashboardController@index')->name('admin-sales');
 
-    Route::get('/product', 'ProductController@list')->name('product-list-admin');
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('/', 'ProductController@list')->name('admin-product-list');
+        Route::get('/create', 'ProductController@create')->name('admin-product-create');
+        Route::get('/{id}', 'ProductController@show')->name('admin-product-show');
+        Route::get('/{id}/edit', 'ProductController@edit')->name('admin-product-edit');
+        Route::post('/update', 'ProductController@update')->name('admin-product-update');
+        Route::post('/store', 'ProductController@store')->name('admin-product-store');
+    });
 });
 
 /* Fallback */

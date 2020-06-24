@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('titlePage', 'Trang không tìm thấy')
 @section('content')
     <div class="error_page_start">
         <div class="container">

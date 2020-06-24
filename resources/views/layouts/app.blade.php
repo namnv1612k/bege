@@ -13,7 +13,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('titlePage')</title>
 
     <!--Style -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
-
+    <script>
+        const base_url  = '<?php echo env('APP_URL') ?>'
+    </script>
 </head>
 <body>
     <!--[if lte IE 9]>

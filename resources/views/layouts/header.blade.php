@@ -75,9 +75,9 @@
                 <div class="col-xl-6 col-md-12">
                     <div class="header-search clearfix">
                         <div class="header-search-form">
-                            <form action="#">
-                                <input type="text" name="search" placeholder="{{ __('input.search.placeholder') }}">
-                                <input type="submit" name="submit" value="{{ __('input.search.submit') }}">
+                            <form action="{{ route('shop') }}">
+                                <input type="text" name="keyword" placeholder="{{ __('input.search.placeholder') }}">
+                                <button type="submit">{{ __('input.search.submit') }}</button>
                             </form>
                         </div>
                     </div>
@@ -236,3 +236,4 @@
         </div>
     </div>
 </header>
+

@@ -11,9 +11,9 @@
                     </div>
                     <div class="newsletter">
                         <div class="newsletter-box">
-                            <form action="#">
+                            <form action="#" id="form-subscribe">
                                 <input class="subscribe" placeholder="{{__('input.subscribe.placeholder')}}" name="email" id="subscribe" type="email">
-                                <button type="submit" class="submit">{{__('input.subscribe.submit')}}</button>
+                                <button type="button" onclick="Frontend.subscribe()" class=" btn">{{__('input.subscribe.submit')}}</button>
                             </form>
                         </div>
                     </div>

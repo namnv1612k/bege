@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <nav class="woocommerce-breadcrumb">
-                        <a href="index.html">Home</a>
+                        <a href="{{ route('home') }}">Home</a>
                         <span class="separator">/</span> Cart
                     </nav>
                 </div>

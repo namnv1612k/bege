@@ -8,6 +8,10 @@ class Product extends Model
 {
     protected $table = 'products';
 
+    protected $hidden = ['created_at', 'updated_at', 'is_active'];
+
+    protected $fillable = ['name', 'price', 'sale_price', 'feature_image', 'stocks', 'slug', 'sku', 'intro', 'desc', 'views', 'supplier', 'is_active', 'rate'];
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'relation_product_vs_category', 'product_id', 'category_id');
@@ -15,7 +19,7 @@ class Product extends Model
 
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Category', 'relation_product_vs_tag', 'product_id', 'tag_id');
+        return $this->belongsToMany('App\Models\Tag', 'relation_product_vs_tag', 'product_id', 'tag_id');
     }
 
     public function comments()

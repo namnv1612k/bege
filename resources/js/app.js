@@ -6,13 +6,14 @@
 
 require('./bootstrap');
 require('./admin');
+require('./frontend');
+window.toastr = require('toastr/toastr');
 
 require('nivo-slider/jquery.nivo.slider.pack');
 require('jquery.nicescroll');
-require('datatables');
-require('apexcharts');
 
 window.Vue = require('vue');
+Vue.use(require('vue-resource'));
 
 /**
  * The following block of code may be used to automatically register your
@@ -25,8 +26,9 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./vue-template/ExampleComponent.vue').default);
+Vue.component('product-load-infinity', require('./vue-template/product/LoadProduct.vue').default);
 Vue.component('mega-category', require('./vue-template/layouts/MegaCategory.vue').default);
+Vue.component('load-products', require('./vue-template/product/LoadProduct.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

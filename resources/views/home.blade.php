@@ -115,124 +115,47 @@
             <div class="big-product-area">
                 <div class="row">
                     <div class="carosel-next-prive product-carousel-active-home-four owl-carousel">
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper listview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/big/product4.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
+                        @foreach($deal_of_day as $product)
+                            <div class="col-sm-12">
+                                <!-- single product -->
+                                <div class="single-product-area">
+                                    <div class="product-wrapper listview">
+                                        <div class="list-col4">
+                                            <div class="product-image">
+                                                <a href="#">
+                                                    <img src="{{ $product->feature_image }}" alt="">
+                                                </a>
+                                                <div class="quickviewbtn">
+                                                    <a href="#" data-toggle="modal" data-target="#product_modal{{ $product->id }}"  data-original-title="Quick View"><i class="ion-eye"></i></a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                            <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                            <div class="product-rattings">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star-half-o"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                            </div>
-                                            <div class="product-desc">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus</p>
-                                            </div>
-                                            <div class="deal-counter">
-                                                <div data-countdown="2019/08/02"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper listview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <span class="onsale">Sale!</span>
-                                                <img src="images/product/big/product5.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Consequuntur magni</a></h2>
-                                            <span class="price">
-                                                        <del>$ 89.00</del> $ 80.00
-                                                    </span>
-                                            <div class="product-rattings">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star-half-o"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                            </div>
-                                            <div class="product-desc">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus</p>
-                                            </div>
-                                            <div class="deal-counter">
-                                                <div data-countdown="2019/08/02"></div>
+                                        <div class="list-col8">
+                                            <div class="product-info">
+                                                <h2><a href="{{ route('product', ['slug' => $product->slug]) }}">{{ $product->name }}</a></h2>
+                                                <span class="price">
+                                                    <del>{{ \App\Helpers\ProductHelper::vndFormat($product->price) }}</del> {{ \App\Helpers\ProductHelper::vndFormat($product->sale_price) }}
+                                                </span>
+                                                <div class="product-rattings">
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star-half-o"></i></span>
+                                                    <span><i class="fa fa-star-o"></i></span>
+                                                </div>
+                                                <div class="product-desc">
+                                                    {!! $product->intro !!}
+                                                </div>
+                                                <div class="deal-counter">
+                                                    <div data-countdown="2020/08/02"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- single product end -->
                             </div>
-                            <!-- single product end -->
-                        </div>
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper listview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/big/product6.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Epicuri per</a></h2>
-                                            <span class="price">
-                                                        <del>$ 68.00</del> $ 62.00
-                                                    </span>
-                                            <div class="product-rattings">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star-half-o"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                            </div>
-                                            <div class="product-desc">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus</p>
-                                            </div>
-                                            <div class="deal-counter">
-                                                <div data-countdown="2019/08/02"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -245,7 +168,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <a href="#">
-                        <img src="images/banner/home4-banner2.jpg" alt="">
+                        <img src="{{ asset('images/banner/home4-banner2.jpg') }}" alt="">
                     </a>
                 </div>
             </div>
@@ -264,698 +187,95 @@
             <div class="product-area-inner">
                 <div class="row">
                     <div class="home-two-product-carousel-active owl-carousel">
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/1.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                            <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
+                        @foreach($best_sellers as $key => $product)
+                            @if($key % 2 == 0)
+                                <div class="col-sm-12">
+                                    <!-- single product -->
+                                    <div class="single-product-area">
+                                        <div class="product-wrapper gridview">
+                                            <div class="list-col4">
+                                                <div class="product-image">
+                                                    <a href="#">
+
+                                                        <img src="{{ $product->feature_image }}" alt="">
+                                                    </a>
+                                                    <div class="quickviewbtn">
+                                                        <a href="#" data-toggle="modal" data-target="#product_modal{{ $product->id }}"  data-original-title="Quick View"><i class="ion-eye"></i></a>
+                                                    </div>
                                                 </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/2.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Nulla sed libero</a></h2>
-                                            <span class="price">
-                                                        $ 45.00
+                                            <div class="list-col8">
+                                                <div class="product-info">
+                                                    <h2><a href="{{ route('product', ['slug' => $product->slug]) }}">{{ \Illuminate\Support\Str::limit($product->name, 20) }}</a></h2>
+                                                    <span class="price">
+                                                        <del>{{ \App\Helpers\ProductHelper::vndFormat($product->price) }}</del> {{ \App\Helpers\ProductHelper::vndFormat($product->sale_price) }}
                                                     </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
                                                 </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <span class="onsale">Sale!</span>
-                                                <img src="images/product/3.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Pellentesque posuere</a></h2>
-                                            <span class="price">
-                                                        $ 100.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
+                                                <div class="product-hidden">
+                                                    <div class="add-to-cart">
+                                                        <button type="button" onclick="Frontend.addCart({{ $product->id }})" class="btn btn-primary">Add to cart</button>
+                                                    </div>
+                                                    <div class="star-actions">
+                                                        <div class="product-rattings">
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star-half-o"></i></span>
+                                                            <span><i class="fa fa-star-o"></i></span>
+                                                        </div>
+                                                        <ul class="actions">
+                                                            <li><button type="button" onclick="Frontend.addWish({{ $product->id }}, {{ Auth::id() ?? null }})" class="btn"><i class="ion-android-favorite-outline"></i></button></li>
+{{--                                                            <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>--}}
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/4.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Tincidunt malesuada</a></h2>
-                                            <span class="price">
-                                                        <del>$ 80.00</del> $ 50.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
+                                    <!-- single product end -->
+                                    {{--<div class="single-product-area">
+                                        <div class="product-wrapper gridview">
+                                            <div class="list-col4">
+                                                <div class="product-image">
+                                                    <a href="#">
+                                                        <img src="{{ $product->feature_image }}" alt="">
+                                                    </a>
+                                                    <div class="quickviewbtn">
+                                                        <a href="#" data-toggle="modal" data-target="#product_modal{{ $product->id }}"  data-original-title="Quick View"><i class="ion-eye"></i></a>
+                                                    </div>
                                                 </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/5.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Pellentesque posuere</a></h2>
-                                            <span class="price">
-                                                        $ 45.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
+                                            <div class="list-col8">
+                                                <div class="product-info">
+                                                    <h2><a href="{{ route('product', ['slug' => $product->slug]) }}">{{ \Illuminate\Support\Str::limit($product, 20) }}</a></h2>
+                                                    <span class="price">
+                                                            $ 45.00
+                                                        </span>
                                                 </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <span class="onsale">Sale!</span>
-                                                <img src="images/product/6.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Kaoreet lobortis</a></h2>
-                                            <span class="price">
-                                                        $ 95.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
+                                                <div class="product-hidden">
+                                                    <div class="add-to-cart">
+                                                        <button class="btn btn-primary" onclick="Frontend.addCart({{ $product->id }})" type="button">Add to cart</button>
+                                                    </div>
+                                                    <div class="star-actions">
+                                                        <div class="product-rattings">
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star-half-o"></i></span>
+                                                            <span><i class="fa fa-star-o"></i></span>
+                                                        </div>
+                                                        <ul class="actions">
+                                                            <li><button type="button" class="btn"><i class="ion-android-favorite-outline"></i></button></li>
+--}}{{--                                                            <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>--}}{{--
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/7.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Aliquam lobortis est</a></h2>
-                                            <span class="price">
-                                                        $ 80.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <span class="onsale">Sale!</span>
-                                                <img src="images/product/8.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                            <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/9.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Phasellus vel hendrerit</a></h2>
-                                            <span class="price">
-                                                        $ 55.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <span class="onsale">Sale!</span>
-                                                <img src="images/product/10.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Auctor gravida enim</a></h2>
-                                            <span class="price">
-                                                        <del>$ 85.00</del> $ 75.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/11.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                            <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/12.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                            <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/13.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                            <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/1.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                            <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
-                        <div class="col-sm-12">
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/2.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                            <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                            <!-- single product -->
-                            <div class="single-product-area">
-                                <div class="product-wrapper gridview">
-                                    <div class="list-col4">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img src="images/product/3.jpg" alt="">
-                                            </a>
-                                            <div class="quickviewbtn">
-                                                <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-col8">
-                                        <div class="product-info">
-                                            <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                            <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                        </div>
-                                        <div class="product-hidden">
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                            <div class="star-actions">
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                                <ul class="actions">
-                                                    <li><a href="#"><i class="ion-android-favorite-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single product end -->
-                        </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -1034,420 +354,148 @@
                             <h3>LATEST PRODUCTS</h3>
                         </div>
                         <div class="mini-product carosel-next-prive owl-carousel">
-                            <div class="mini-product-listview">
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/18.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
+                            @foreach($top_last as $key => $product)
+                                @if($key % 3 == 0)
+                                    <div class="mini-product-listview">
+                                        <!-- single product -->
+                                        <div class="single-product-area">
+                                            <div class="product-wrapper listview">
+                                                <div class="list-col4">
+                                                    <div class="product-image">
+                                                        <a href="#">
+                                                            <img src="images/product/mini/18.jpg" alt="">
+                                                        </a>
+                                                        <div class="quickviewbtn">
+                                                            <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-col8">
+                                                    <div class="product-info">
+                                                        <h2><a href="single-product.html">Itaque earum</a></h2>
+                                                        <span class="price">
+                                                                $ 866.00
+                                                            </span>
+                                                        <div class="product-rattings">
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star-half-o"></i></span>
+                                                            <span><i class="fa fa-star-o"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="add-to-cart">
+                                                        <a href="cart.html">Add to cart</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Itaque earum</a></h2>
-                                                <span class="price">
-                                                        $ 866.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
+                                        <!-- single product end -->
+                                        <!-- single product -->
+                                        <div class="single-product-area">
+                                            <div class="product-wrapper listview">
+                                                <div class="list-col4">
+                                                    <div class="product-image">
+                                                        <a href="#">
+                                                            <img src="images/product/mini/19.jpg" alt="">
+                                                        </a>
+                                                        <div class="quickviewbtn">
+                                                            <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-col8">
+                                                    <div class="product-info">
+                                                        <h2><a href="single-product.html">Nostrum exercita</a></h2>
+                                                        <span class="price">
+                                                                $ 550.00
+                                                            </span>
+                                                        <div class="product-rattings">
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star-half-o"></i></span>
+                                                            <span><i class="fa fa-star-o"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="add-to-cart">
+                                                        <a href="cart.html">Add to cart</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
+                                        </div>
+                                        <!-- single product end -->
+                                        <!-- single product -->
+                                        <div class="single-product-area">
+                                            <div class="product-wrapper listview">
+                                                <div class="list-col4">
+                                                    <div class="product-image">
+                                                        <a href="#">
+                                                            <img src="images/product/mini/20.jpg" alt="">
+                                                        </a>
+                                                        <div class="quickviewbtn">
+                                                            <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-col8">
+                                                    <div class="product-info">
+                                                        <h2><a href="single-product.html">Consequuntur magni</a></h2>
+                                                        <span class="price">
+                                                                $ 366.00
+                                                            </span>
+                                                        <div class="product-rattings">
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star-half-o"></i></span>
+                                                            <span><i class="fa fa-star-o"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="add-to-cart">
+                                                        <a href="cart.html">Add to cart</a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <!-- single product end -->
+                                        <!-- single product -->
+                                        <div class="single-product-area">
+                                            <div class="product-wrapper listview">
+                                                <div class="list-col4">
+                                                    <div class="product-image">
+                                                        <a href="#">
+                                                            <img src="images/product/mini/21.jpg" alt="">
+                                                        </a>
+                                                        <div class="quickviewbtn">
+                                                            <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-col8">
+                                                    <div class="product-info">
+                                                        <h2><a href="single-product.html">Porro quisquam</a></h2>
+                                                        <span class="price">
+                                                                $ 88.00
+                                                            </span>
+                                                        <div class="product-rattings">
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star-half-o"></i></span>
+                                                            <span><i class="fa fa-star-o"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="add-to-cart">
+                                                        <a href="cart.html">Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- single product end -->
                                     </div>
-                                </div>
-                                <!-- single product end -->
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/19.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Nostrum exercita</a></h2>
-                                                <span class="price">
-                                                        $ 550.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/20.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Consequuntur magni</a></h2>
-                                                <span class="price">
-                                                        $ 366.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/21.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Porro quisquam</a></h2>
-                                                <span class="price">
-                                                        $ 88.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                            </div>
-                            <div class="mini-product-listview">
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/22.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                                <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/1.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                                <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/2.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                                <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/3.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                                <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                            </div>
-                            <div class="mini-product-listview">
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/4.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                                <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/5.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                                <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/6.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                                <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                                <!-- single product -->
-                                <div class="single-product-area">
-                                    <div class="product-wrapper listview">
-                                        <div class="list-col4">
-                                            <div class="product-image">
-                                                <a href="#">
-                                                    <img src="images/product/mini/7.jpg" alt="">
-                                                </a>
-                                                <div class="quickviewbtn">
-                                                    <a href="#" data-toggle="modal" data-target="#product_modal"  data-original-title="Quick View"><i class="ion-eye"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-col8">
-                                            <div class="product-info">
-                                                <h2><a href="single-product.html">Sit voluptatem</a></h2>
-                                                <span class="price">
-                                                        <del>$ 77.00</del> $ 66.00
-                                                    </span>
-                                                <div class="product-rattings">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star-half-o"></i></span>
-                                                    <span><i class="fa fa-star-o"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single product end -->
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>

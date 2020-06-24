@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
         $faker = Faker\Factory::create('vi_VN');
         DB::table('categories')->chunkById(20, function ($cates) use ($faker) {
             foreach ($cates as $cate) {
-                $name = $faker->text(10) . ' - ' . $cate->name;
+                $name = $faker->text(10) . uniqid() . ' - ' . $cate->name;
 
                 // Products
                 $id_product = DB::table('products')->insertGetId([
