@@ -306,11 +306,11 @@
                                         <tfoot>
                                         <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
-                                            <td><span class="amount cart-total-price cart-subtotal">@money( \App\Http\Controllers\Frontend\CartController::totalPrice() )</span></td>
+                                            <td><span class="amount cart-total-price cart-subtotal">@money( App\Helpers\Cart::totalPrice() )</span></td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Order Total</th>
-                                            <td><strong><span class="amount order-price cart-total-price">@money( \App\Http\Controllers\Frontend\CartController::totalPrice() )</span></strong>
+                                            <td><strong><span class="amount order-price cart-total-price">@money( App\Helpers\Cart::totalPrice() )</span></strong>
                                             </td>
                                         </tr>
                                         </tfoot>

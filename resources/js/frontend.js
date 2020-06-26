@@ -180,35 +180,6 @@ Frontend = {
         })
     },
 
-    // Update all quantiry cart
-    updateCart: function () {
-        let that = this;
-        $.ajax({
-            url: baseURL + '/cart/update',
-            method: "POST",
-            data: {
-                id: $("input[name='id']").map(function(){return $(this).val();}).get(),
-                quantity: $('input[name="quantity"]').map(function(){return $(this).val();}).get()
-            },
-            success: function (response) {
-                let message = response.message;
-                let countCart = response.countCart;
-                let totalPrice = that.formatCurrency(response.totalPrice);
-                that.alertToastr(message);
-
-                if (message.status === 'success') {
-                    $('.cart-count').text(countCart).fadeIn();
-                    $('.cart-total-price').text(totalPrice).fadeIn();
-                }
-
-                // reload page
-                setTimeout(function() {
-                    location.reload();
-                }, 3000);
-            }
-        })
-    },
-
     // Apply Coupon
     applyCoupon: function () {
         that = this;
@@ -240,7 +211,7 @@ Frontend = {
                 }
             }
         })
-    }
+    },
 };
 
 // Validate form contact

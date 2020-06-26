@@ -48,4 +48,9 @@
 <!-- Main js  -->
 <script src="{{ asset('js/main.js') }}"></script>
 
+@if(session(ALERT_TOASTR))
+    <script>
+        Frontend.alertToastr({!! session(ALERT_TOASTR) !!})
+    </script>
+@endif
 </html>

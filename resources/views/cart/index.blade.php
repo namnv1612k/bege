@@ -29,7 +29,8 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <!-- Form Start -->
-                    <form action="#">
+                    <form action="{{ route('cart-update') }}" method="post">
+                        @csrf
                         <!-- Table Content Start -->
                         <div class="table-content table-responsive mb-50">
                             <table>
@@ -44,25 +45,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if(session(CART) != null)
-                                    @foreach(session(CART) as $key => $item)
-                                        <input type="hidden" name="id" value="{{ $key }}">
-                                        <tr class="cart-item-{{ $key }}">
-                                            <td class="product-thumbnail">
-                                                <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}">
-                                            </td>
-                                            <td class="product-name"><a href="{{ route('product', ['slug' => $item['slug']]) }}">{{ $item['name'] }}</a></td>
-                                            <td class="product-price"><span class="amount">@money($item['price'])</span></td>
-                                            <td class="product-quantity"><input name="quantity" type="number" value="{{ $item['quantity'] }}"></td>
-                                            <td class="product-subtotal">@money($item['price'] * $item['quantity'])</td>
-                                            <td class="product-remove"> <button type="button" onclick="Frontend.removeItemCart({{ $key }})" class="btn"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                                    @if(App\Helpers\Cart::check())
+                                        @foreach(App\Helpers\Cart::all() as $key => $item)
+                                            <input type="hidden" name="id[]" value="{{ $key }}">
+                                            <tr class="cart-item-{{ $key }}">
+                                                <td class="product-thumbnail">
+                                                    <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}">
+                                                </td>
+                                                <td class="product-name"><a href="{{ route('product', ['slug' => $item['slug']]) }}">{{ $item['name'] }}</a></td>
+                                                <td class="product-price"><span class="amount">@money($item['price'])</span></td>
+                                                <td class="product-quantity"><input name="quantity[]" type="number" min="0" value="{{ $item['quantity'] }}"></td>
+                                                <td class="product-subtotal">@money($item['price'] * $item['quantity'])</td>
+                                                <td class="product-remove"> <button type="button" onclick="Frontend.removeItemCart({{ $key }})" class="btn"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <h2 class="text-center text-muted">Giỏ hàng trống</h2>
                                         </tr>
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <h1 class="text-center text-muted">Giỏ hàng trống</h1>
-                                    </tr>
-                                @endif
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -71,7 +72,7 @@
                             <!-- Cart Button Start -->
                             <div class="col-md-8 col-sm-7 col-xs-12">
                                 <div class="buttons-cart">
-                                    <button type="button" onclick="Frontend.updateCart()">Update Cart</button>
+                                    <button type="submit">Update Cart</button>
                                     <a href="{{ route('shop') }}">Continue Shopping</a>
                                 </div>
                             </div>
@@ -85,12 +86,12 @@
                                         <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
-                                            <td><span class="amount">@money(\App\Http\Controllers\Frontend\CartController::totalPrice())</span></td>
+                                            <td><span class="amount cart-total-price">@money(App\Helpers\Cart::totalPrice())</span></td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Total</th>
                                             <td>
-                                                <strong><span class="amount">@money(\App\Http\Controllers\Frontend\CartController::totalPrice())</span></strong>
+                                                <strong><span class="amount cart-total-price">@money(App\Helpers\Cart::totalPrice())</span></strong>
                                             </td>
                                         </tr>
                                         </tbody>

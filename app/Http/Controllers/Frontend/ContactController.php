@@ -19,9 +19,18 @@ class ContactController extends Controller
     {
         Mail::to($request->email)->send(new MailContact());
         if (Mail::failures()) {
-            session()->flash('status_send_mail', false);
+            $mess = [
+                'status' => INFO,
+                'title' => '',
+                'message' => 'Email không thành công.'
+            ];
         }
-        session()->flash('status_send_mail', true);
+        $mess = [
+            'status' => SUCCESS,
+            'title' => '',
+            'message' => 'Chúng tôi đã gửi mail liên hệ đến bạn.'
+        ];
+        session()->flash(ALERT_TOASTR, json_encode($mess));
         return redirect()->route('contact');
     }
 

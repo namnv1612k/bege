@@ -24,3 +24,4 @@ define('TIME_STAMP_FORMAT', 'Y-m-d H:i:s');
 // Payment
 define('DEFAULT_PAYMENT', 'default');
 define('STRIPE_PAYMENT', 'stripe');
+define('ALERT_TOASTR', 'Alert by Toastr');

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('titlePage', 'Contact - ' . env('APP_NAME'))
 @section('content')
 
     <div class="breadcrumbs-container">
@@ -7,25 +8,13 @@
             <div class="row">
                 <div class="col-sm-12">
                     <nav class="woocommerce-breadcrumb">
-                        <a href="index.html">Home</a>
+                        <a href="{{ route('home') }}">Home</a>
                         <span class="separator">/</span> About
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-
-    @empty(!session('status_send_mail'))
-        @if(session('status_send_mail') == true)
-            <div class="alert alert-success col-md-2 m-auto">
-                <strong>Thành công!</strong> Email đã được gửi.
-            </div><br>
-        @else
-            <div class="alert alert-warning col-md-2 m-auto">
-                <strong>Lỗi!</strong> Có một lỗi xảy ra trong khi gửi mail.
-            </div><br>
-        @endif
-    @endempty
 
     <div class="contact-page-area">
         <!-- contact page map -->
@@ -123,4 +112,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('extra-js')
+
 @endsection

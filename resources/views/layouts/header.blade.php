@@ -88,10 +88,10 @@
                             <li>
                                 <a href="#">
                                     <span class="cart-icon">
-                                        <i class="ion-bag"></i><sup class="cart-count">{{ \App\Http\Controllers\Frontend\CartController::countCart() }}</sup>
+                                        <i class="ion-bag"></i><sup class="cart-count">{{ App\Helpers\Cart::countCart() }}</sup>
                                     </span>
                                     <span class="cart-text">
-                                        <span class="cart-text-title">{{ __('span.my_cart') }} <br> <strong class="cart-total-price">@money( \App\Http\Controllers\Frontend\CartController::totalPrice() )</strong> </span>
+                                        <span class="cart-text-title">{{ __('span.my_cart') }} <br> <strong class="cart-total-price">@money( App\Helpers\Cart::totalPrice() )</strong> </span>
                                     </span>
                                 </a>
                                 <ul>
@@ -119,7 +119,7 @@
 
                                     <li>
                                         <div class="shop-cart-total">
-                                            <p>{{ __('cart.subtotal') }}: <span class="pull-right cart-total-price">@money( \App\Http\Controllers\Frontend\CartController::totalPrice() )</span></p>
+                                            <p>{{ __('cart.subtotal') }}: <span class="pull-right cart-total-price">@money( App\Helpers\Cart::totalPrice() )</span></p>
                                         </div>
                                     </li>
                                     <li>
