@@ -44,26 +44,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <a href="#"><img src="images/product/1.jpg" alt="cart-image"></a>
-                                    </td>
-                                    <td class="product-name"><a href="#">dictum idrisus</a></td>
-                                    <td class="product-price"><span class="amount">£165.00</span></td>
-                                    <td class="product-quantity"><input type="number" value="1"></td>
-                                    <td class="product-subtotal">£165.00</td>
-                                    <td class="product-remove"> <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <a href="#"><img src="images/product/2.jpg" alt="cart-image"></a>
-                                    </td>
-                                    <td class="product-name"><a href="#">Carte Postal Clock</a></td>
-                                    <td class="product-price"><span class="amount">£50.00</span></td>
-                                    <td class="product-quantity"><input type="number" value="1"></td>
-                                    <td class="product-subtotal">£50.00</td>
-                                    <td class="product-remove"> <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-                                </tr>
+                                @if(session(CART) != null)
+                                    @foreach(session(CART) as $key => $item)
+                                        <input type="hidden" name="id" value="{{ $key }}">
+                                        <tr class="cart-item-{{ $key }}">
+                                            <td class="product-thumbnail">
+                                                <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}">
+                                            </td>
+                                            <td class="product-name"><a href="{{ route('product', ['slug' => $item['slug']]) }}">{{ $item['name'] }}</a></td>
+                                            <td class="product-price"><span class="amount">@money($item['price'])</span></td>
+                                            <td class="product-quantity"><input name="quantity" type="number" value="{{ $item['quantity'] }}"></td>
+                                            <td class="product-subtotal">@money($item['price'] * $item['quantity'])</td>
+                                            <td class="product-remove"> <button type="button" onclick="Frontend.removeItemCart({{ $key }})" class="btn"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <h1 class="text-center text-muted">Giỏ hàng trống</h1>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -72,8 +71,8 @@
                             <!-- Cart Button Start -->
                             <div class="col-md-8 col-sm-7 col-xs-12">
                                 <div class="buttons-cart">
-                                    <input type="submit" value="Update Cart">
-                                    <a href="#">Continue Shopping</a>
+                                    <button type="button" onclick="Frontend.updateCart()">Update Cart</button>
+                                    <a href="{{ route('shop') }}">Continue Shopping</a>
                                 </div>
                             </div>
                             <!-- Cart Button Start -->
@@ -86,18 +85,18 @@
                                         <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
-                                            <td><span class="amount">$215.00</span></td>
+                                            <td><span class="amount">@money(\App\Http\Controllers\Frontend\CartController::totalPrice())</span></td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Total</th>
                                             <td>
-                                                <strong><span class="amount">$215.00</span></strong>
+                                                <strong><span class="amount">@money(\App\Http\Controllers\Frontend\CartController::totalPrice())</span></strong>
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <div class="wc-proceed-to-checkout">
-                                        <a href="checkout.html">Proceed to Checkout</a>
+                                        <a href="{{ route('checkout') }}">Proceed to Checkout</a>
                                     </div>
                                 </div>
                             </div>

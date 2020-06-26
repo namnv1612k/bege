@@ -5568,8 +5568,8 @@ element {}
     overflow: hidden;
 }
 
-.buttons-cart input,
-.coupon input[type="submit"],
+.buttons-cart button,
+.coupon input button,
 .buttons-cart a,
 .coupon-info p.form-row input[type="submit"] {
     background: #363f4d none repeat scroll 0 0;
@@ -5820,7 +5820,7 @@ p.lost-password a:hover {
 
 .coupon-content {
     border: 1px solid #e5e5e5;
-    display: none;
+    display: block;
     margin-bottom: 20px;
     padding: 20px;
 }
@@ -5894,7 +5894,7 @@ p.checkout-coupon input[type=text] {
     width: 170px;
 }
 
-p.checkout-coupon input[type="submit"] {
+p.checkout-coupon button {
     background: #333 none repeat scroll 0 0;
     border: medium none;
     border-radius: 0;
@@ -5989,10 +5989,19 @@ p.checkout-coupon input[type="submit"] {
     display: inline-block;
 }
 
-.checkout-form-list input[type=password] {}
+.checkout-form-list input[type=password] {
+    height: 40px;
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ebebeb;
+    border-radius: 0;
+    width: 100%;
+    padding: 0 0 0 10px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .075);
+}
 
-.create-accounts {
-    display: none
+.create-accounts:has(.show) {
+    display: block;
 }
 
 .ship-different-title {}
@@ -7785,3 +7794,38 @@ a.ideas-btn:hover {
 }
 
 /*== My Account Page End ==*/
+
+ /* Custom */
+ .is-invalid {
+     border-color: #e3342f;
+     padding-right: calc(1.6em + 0.75rem);
+     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23e3342f' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e3342f' stroke='none'/%3e%3c/svg%3e");
+     background-repeat: no-repeat;
+     background-position: right calc(0.4em + 0.1875rem) center;
+     background-size: calc(0.8em + 0.375rem) calc(0.8em + 0.375rem);
+ }
+
+.is-valid {
+    border-color: #38c172;
+    padding-right: calc(1.6em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2338c172' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.4em + 0.1875rem) center;
+    background-size: calc(0.8em + 0.375rem) calc(0.8em + 0.375rem);
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #e3342f;
+}
+
+.valid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #38c172;
+}

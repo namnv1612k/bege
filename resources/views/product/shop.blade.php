@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('titlePage', 'Shop - ' . env('APP_NAME'))
 @section('content')
     <div class="breadcrumbs-container">
         <div class="container">

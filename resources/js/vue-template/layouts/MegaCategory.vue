@@ -32,7 +32,7 @@
             }
         },
         mounted() {
-            axios.get('api/category/megacategory')
+            axios.get(base_url + '/api/category/megacategory')
                 .then(response => (this.categories = response.data))
                 .catch(function (response) {
                     console.log(response)

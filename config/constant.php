@@ -13,6 +13,14 @@ define('FAIL', 'fail');
 define('EXIST', 'exist');
 define('WARNING', 'warning');
 define('ERROR', 'error');
+define('INFO', 'info');
 define('CART', 'Shop Cart');
+
+// date time
 define('DATE_FORMAT', 'M - d - Y');
 define('TIME_FORMAT', 'h:m: a');
+define('TIME_STAMP_FORMAT', 'Y-m-d H:i:s');
+
+// Payment
+define('DEFAULT_PAYMENT', 'default');
+define('STRIPE_PAYMENT', 'stripe');

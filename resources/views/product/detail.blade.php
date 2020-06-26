@@ -45,7 +45,7 @@
                                     <div class="tab-pane active" id="pro-details1">
                                         <div class="product-popup">
                                             <a href="{{ $product->feature_image }}">
-                                                <img style="width: 400px;" src="{{ $product->feature_image }}" alt="">
+                                                <img style="width: 333px;" src="{{ $product->feature_image }}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@
                                         <div class="tab-pane" id="pro-details{{ $key + 2 }}">
                                             <div class="product-popup">
                                                 <a href="{{ $album->image }}">
-                                                    <img style="width: 400px" src="{{ $album->image }}" alt="">
+                                                    <img style="width: 333px" src="{{ $album->image }}" alt="">
                                                 </a>
                                             </div>
                                         </div>
@@ -217,7 +217,7 @@
                                 </div>
                                 <div class="list-col8">
                                     <div class="product-info">
-                                        <h2><a href="{{ route('product-detail', ['slug' => $product->slug]) }}">{{ \Illuminate\Support\Str::limit($product->name, 20) }}</a></h2>
+                                        <h2><a href="{{ route('product', ['slug' => $product->slug]) }}">{{ \Illuminate\Support\Str::limit($product->name, 20) }}</a></h2>
                                         <span class="price">
                                             <del>{{ \App\Helpers\ProductHelper::vndFormat($product->price) }}</del> {{ \App\Helpers\ProductHelper::vndFormat($product->sale_price) }}
                                         </span>

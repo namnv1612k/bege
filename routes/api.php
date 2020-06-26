@@ -18,18 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/* Frontend */
+/* namespace Api */
 Route::group(['namespace' => 'Api'], function () {
     Route::get('category/megacategory', 'CategoryController@megacategory')->name('megacategory');
     Route::post('helper/CheckExistData', 'CheckExistDataHelper@common')->name('check-exist-data');
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('load-infinity', 'ProductApi@loadInfinity')->name('product-infinity');
-        Route::post('addWish', 'ProductApi@addWish')->name('add-wish');
-    });
-
-    Route::group(['prefix' => 'cart'], function () {
-        Route::post('addCart', 'CartApi@addCart')->name('add-cart');
     });
 
     Route::post('post-comment', 'CommentApi@postComment')->name('api-comment');
@@ -38,3 +33,6 @@ Route::group(['namespace' => 'Api'], function () {
 
 Route::post('subscribe/sendMail', 'Frontend\ContactController@subscribe')->name('subscribe');
 
+Route::group(['prefix' => 'checkout'], function () {
+
+});

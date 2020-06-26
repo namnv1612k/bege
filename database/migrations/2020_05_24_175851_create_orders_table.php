@@ -15,11 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->integer('id')->comment('ID')->autoIncrement();
+            $table->integer('user_id')->comment('Người tạo hóa đơn')->nullable();
             $table->float('total', 12, 3)->comment('Tổng số tiền hóa đơn');
+            $table->string('address')->comment('Địa chỉ giao hàng');
+            $table->string('phone')->comment('Số điện thoại');
+            $table->text('message')->comment('Lời nhắn');
             $table->boolean('payment_method')
-                ->comment('Phương thức thanh toán: 0. Tiền mặt, 1. Credit cart, 2. Paypal');
+                ->comment('Phương thức thanh toán: 0. Tiền mặt, 1. Paypal, 2. Credit cart');
             $table->boolean('status')->comment('Trạng thái: 1. Đã thanh toán, 0. Chưa thanh toán');
-            $table->integer('user_id')->comment('Người tạo');
             $table->timestamps();
 
             // Foreign key

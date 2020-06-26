@@ -33,14 +33,27 @@ Route::group(['namespace' => 'Frontend'], function () {
     /* Shop */
     Route::group([], function() {
         Route::get('shop', 'ProductController@shop')->name('shop');
-        Route::get('product/{slug}', 'ProductController@detail')->name('product');
-        Route::get('product/quickview/{id}', 'ProductController@quickview')->name('quickview');
+        Route::group(['prefix' => 'product'], function () {
+            Route::get('{slug}', 'ProductController@detail')->name('product');
+            Route::get('quickview/{id}', 'ProductController@quickview')->name('quickview');
+            Route::post('addWish', 'ProductController@addWish')->name('add-wish');
+        });
+    });
 
+    /* Cart */
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/', 'CartController@index')->name('cart');
+        Route::post('add', 'CartController@add')->name('add-cart');
+        Route::post('remove', 'CartController@remove')->name('cart-remove');
+        Route::post('update', 'CartController@update')->name('cart-update');
     });
 
     /* Payment */
-    Route::get('cart', 'PaymentController@cart')->name('cart');
-    Route::get('checkout', 'PaymentController@show')->name('checkout');
+    Route::group(['prefix' => 'checkout', 'middleware' => 'payment'], function () {
+        Route::get('/', 'PaymentController@show')->name('checkout');
+        Route::post('apply-coupon', 'PaymentController@applyCoupon')->name('apply-coupon');
+        Route::post('payment', 'PaymentController@payment')->name('payment');
+    });
 
     /* Blog */
     Route::group(['prefix' => 'blog'], function () {
@@ -56,9 +69,6 @@ Route::group(['namespace' => 'Frontend'], function () {
     /* Contact */
     Route::get('contact', 'ContactController@index')->name('contact');
     Route::post('contact/sendMail', 'ContactController@sendMail')->name('contact-mail');
-
-    /* Cart */
-    Route::get('cart', 'CartController@index')->name('cart');
 
     /* Faq */
     Route::get('faq', 'FaqController@index')->name('faq');

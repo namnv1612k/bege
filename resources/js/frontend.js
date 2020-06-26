@@ -1,28 +1,47 @@
 /* Frontend */
-
+$.validate = require('jquery-validation');
+const baseURL = base_url;
 Frontend = {
-    addWish: function (product_id, user_id = null) {
+    // Function alert by Toastr Global
+    alertToastr: function (value) {
+        if (value.status === 'success') {
+            toastr.success(value.message, value.title);
+        } else if (value.status === 'exist') {
+            toastr.info(value.message, value.title);
+        } else if (value.status === 'fail') {
+            toastr.warning(value.message, value.title);
+        } else if (value.status === 'warning') {
+            toastr.warning(value.message, value.title);
+        } else if (value.status === 'info') {
+            toastr.info(value.message, value.title);
+        } else if (value.status === null) {
+        } else {
+            toastr.error(value.message ?? 'Đã xảy ra lỗi không xác định', value.title ?? 'Error');
+        }
+    },
+
+    formatCurrency: function (price) {
+        // return $.number(price) + ' ₫'
+        return  price.toLocaleString('en', {
+            minimumFractionDigits: 0,
+            style: 'currency',
+            currency: 'VND'
+        });
+    },
+
+    // Add to wishlist
+    addWish: function (product_id) {
         let data = {};
+        var that = this;
         $.ajax({
-            url: base_url + '/api/product/addWish',
+            url: baseURL + '/product/addWish',
             method: "POST",
             data: {
                 product_id: product_id,
-                user_id: user_id
             },
             success: function (response) {
                 data = response;
-                console.log(data);
-
-                if (data.status === 'success') {
-                    toastr.success(data.message, data.title);
-                } else if (data.status === 'exist') {
-                    toastr.info(data.message, data.title);
-                } else if (data.status === 'fail') {
-                    toastr.warning(data.message, data.title);
-                } else {
-                    toastr.error(data.message, data.title);
-                }
+                that.alertToastr(data)
             },
             error: function (error) {
                 toastr.error('Đã có lỗi không xác định', 'Lỗi');
@@ -30,26 +49,45 @@ Frontend = {
         })
     },
 
+    // Add cart
     addCart: function (product_id) {
         let message = {};
+        var that = this;
         $.ajax({
-            url: base_url + '/api/cart/addCart',
+            url: baseURL + '/cart/add',
             method: "POST",
             data: {
-                product_id: product_id,
+                id: product_id
             },
             success: function (response) {
                 message = response.message;
-
+                let countCart = response.countCart;
+                let totalPrice = that.formatCurrency(response.totalPrice);
+                let item = response.item;
                 if (message.status === 'success') {
-                    toastr.success(message.message, message.title);
-                } else if (message.status === 'exist') {
-                    toastr.info(message.message, message.title);
-                } else if (message.status === 'fail') {
-                    toastr.warning(message.message, message.title);
-                } else {
-                    toastr.error(message.message, message.title);
+                    $('#list-cart-header').append(
+                        '<li class="cart-item-' + product_id + '">\n' +
+                        '    <div class="single-shop-cart-wrapper">\n' +
+                        '        <div class="shop-cart-img">\n' +
+                        '            <a href="#"><img src="' + item.image + '" alt="' + item.name + '"></a>\n' +
+                        '        </div>\n' +
+                        '        <div class="shop-cart-info">\n' +
+                        '            <h5><a href="' + baseURL + '/product/' + item.slug + '">' + item.name + '</a></h5>\n' +
+                        '            <span class="price">' + that.formatCurrency(item.price) + '</span>\n' +
+                        '            <span class="quantity">Qty: ' + item.quantity + '</span>\n' +
+                        '            <span class="cart-remove"><a onclick="Frontend.removeItemCart(' + product_id + ')"><i class="fa fa-times"></i></a></span>\n' +
+                        '        </div>\n' +
+                        '    </div>\n' +
+                        '</li>'
+                    ).show('slow');
+                    $('.cart-count').text(countCart).fadeIn();
+                    $('.cart-total-price').text(totalPrice).fadeIn();
                 }
+                if (message.status === 'info') {
+                    $('.cart-item-'+product_id).find('.single-shop-cart-wrapper > .shop-cart-info > .quantity').text('Qty: ' + item.quantity )
+                    $('.cart-total-price').text(that.formatCurrency(totalPrice))
+                }
+                that.alertToastr(message);
             },
             error: function (error) {
                 toastr.error('Đã có lỗi không xác định', 'Lỗi');
@@ -57,7 +95,9 @@ Frontend = {
         })
     },
 
+    // Comment
     comment: function (type, id, user_id = null) {
+        var that = this;
         $('.comment-form').validate({
             rules: {
                 comment: { required: true, maxlength: 2000 }
@@ -70,7 +110,7 @@ Frontend = {
             }
         });
         $.ajax({
-            url: base_url + '/api/post-comment',
+            url: baseURL + '/api/post-comment',
             method: 'POST',
             data: {
                 type: type,
@@ -82,13 +122,7 @@ Frontend = {
             },
             success: function (response) {
                 let data = response;
-                if (data.status === 'warning') {
-                    toastr.warning(data.message, data.title)
-                } else if (data.status === 'success') {
-                    toastr.success(data.message, data.title)
-                } else {
-                    toastr.error('Đã có lỗi không xác định', 'Lỗi');
-                }
+                that.alertToastr(data)
 
                 // reload page
                 setTimeout(function() {
@@ -100,31 +134,115 @@ Frontend = {
             }
         })
     },
+
+    // Subscribe
     subscribe: function (type) {
+        var that = this;
         $.ajax({
-            url: base_url + '/api/subscribe/sendMail',
+            url: baseURL + '/api/subscribe/sendMail',
             method: 'POST',
             data: {
                 email: $('#subscribe').val() ?? null
             },
             success: function (response) {
                 let data = response;
-                if (data.status === 'success') {
-                    toastr.success(data.message, data.title)
-                } else if (data.status === 'warning') {
-                    toastr.warning(data.message, data.title)
-                } else {
-                    toastr.error('Đã có lỗi xảy ra khi gửi mail', 'Không thể gửi')
-                }
+                that.alertToastr(data)
             },
             error: function () {
                 toastr.error('Đã có lỗi xảy ra khi gửi mail', 'Không thể gửi')
             }
         })
+    },
+
+    // Remove item cart
+    removeItemCart: function (id) {
+        that = this;
+        $.ajax({
+            url: baseURL + '/cart/remove',
+            method: "POST",
+            data: {
+                id: id
+            },
+            success: function (response) {
+                let message = response.message;
+                let countCart = response.countCart;
+                let totalPrice = that.formatCurrency(response.totalPrice);
+                if (message.status !== 'error') {
+                    $('.cart-count').text(countCart).fadeIn();
+                    $('.cart-total-price').text(totalPrice).fadeIn();
+                    $('.cart-item-' + id).toggle('slow');
+                }
+                that.alertToastr(message)
+            },
+            error: function () {
+                toastr.error('Đã có lỗi không xác định', 'Lỗi');
+            }
+        })
+    },
+
+    // Update all quantiry cart
+    updateCart: function () {
+        let that = this;
+        $.ajax({
+            url: baseURL + '/cart/update',
+            method: "POST",
+            data: {
+                id: $("input[name='id']").map(function(){return $(this).val();}).get(),
+                quantity: $('input[name="quantity"]').map(function(){return $(this).val();}).get()
+            },
+            success: function (response) {
+                let message = response.message;
+                let countCart = response.countCart;
+                let totalPrice = that.formatCurrency(response.totalPrice);
+                that.alertToastr(message);
+
+                if (message.status === 'success') {
+                    $('.cart-count').text(countCart).fadeIn();
+                    $('.cart-total-price').text(totalPrice).fadeIn();
+                }
+
+                // reload page
+                setTimeout(function() {
+                    location.reload();
+                }, 3000);
+            }
+        })
+    },
+
+    // Apply Coupon
+    applyCoupon: function () {
+        that = this;
+        let code = $('input[name="code"]').val();
+        that = this;
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            },
+            url: baseURL + '/checkout/apply-coupon',
+            method: 'POST',
+            data: {
+                code: code
+            },
+            success: function (response) {
+                let message = response.message;
+                let discount = response.discount;
+                let totalPrice = response.totalPrice;
+                let code = response.code;
+
+                that.alertToastr(message);
+
+                $('.order-price').text(that.formatCurrency(totalPrice - discount));
+                $('input[name="voucher_code"]').val(code);
+                if (message.status === 'success') {
+                    $('.cart-total-price.cart-subtotal').text(that.formatCurrency(totalPrice) + ' - ' + that.formatCurrency(discount)).fadeIn();
+                } else {
+                    $('.cart-total-price.cart-subtotal').text(that.formatCurrency(totalPrice));
+                }
+            }
+        })
     }
 };
 
-$.validate = require('jquery-validation');
 // Validate form contact
 $(document).ready(function () {
     $('#form-contact').validate({
@@ -153,6 +271,25 @@ $(document).ready(function () {
                 required: 'Không được bỏ trống',
                 maxlength: 'Tối đa 2000 ký tự'
             },
+        },
+        errorElement: 'span',
+        errorClass: "invalid-feedback",
+        success: function(label,element) {
+            $(element).removeClass('is-invalid').addClass('is-valid')
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid').removeClass('is-valid');
+        }
+    });
+
+    // Payment
+    $('#payment').validate({
+        rules: {
+            first_name: { required: true },
+            last_name: { required: true },
+            address: { required: true },
+            email: { required: true, email: true },
+            phone: { required: true },
         },
         errorElement: 'span',
         errorClass: "invalid-feedback",

@@ -1944,7 +1944,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/category/megacategory').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(base_url + '/api/category/megacategory').then(function (response) {
       return _this.categories = response.data;
     })["catch"](function (response) {
       console.log(response);
@@ -59505,66 +59505,94 @@ window.Echo = new Echo({
 /***/ (function(module, exports, __webpack_require__) {
 
 /* Frontend */
+$.validate = __webpack_require__(/*! jquery-validation */ "./node_modules/jquery-validation/dist/jquery.validate.js");
+var baseURL = base_url;
 Frontend = {
+  // Function alert by Toastr Global
+  alertToastr: function alertToastr(value) {
+    if (value.status === 'success') {
+      toastr.success(value.message, value.title);
+    } else if (value.status === 'exist') {
+      toastr.info(value.message, value.title);
+    } else if (value.status === 'fail') {
+      toastr.warning(value.message, value.title);
+    } else if (value.status === 'warning') {
+      toastr.warning(value.message, value.title);
+    } else if (value.status === 'info') {
+      toastr.info(value.message, value.title);
+    } else if (value.status === null) {} else {
+      var _value$message, _value$title;
+
+      toastr.error((_value$message = value.message) !== null && _value$message !== void 0 ? _value$message : 'Đã xảy ra lỗi không xác định', (_value$title = value.title) !== null && _value$title !== void 0 ? _value$title : 'Error');
+    }
+  },
+  formatCurrency: function formatCurrency(price) {
+    // return $.number(price) + ' ₫'
+    return price.toLocaleString('en', {
+      minimumFractionDigits: 0,
+      style: 'currency',
+      currency: 'VND'
+    });
+  },
+  // Add to wishlist
   addWish: function addWish(product_id) {
-    var user_id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
     var data = {};
+    var that = this;
     $.ajax({
-      url: base_url + '/api/product/addWish',
+      url: baseURL + '/product/addWish',
       method: "POST",
       data: {
-        product_id: product_id,
-        user_id: user_id
+        product_id: product_id
       },
       success: function success(response) {
         data = response;
-        console.log(data);
-
-        if (data.status === 'success') {
-          toastr.success(data.message, data.title);
-        } else if (data.status === 'exist') {
-          toastr.info(data.message, data.title);
-        } else if (data.status === 'fail') {
-          toastr.warning(data.message, data.title);
-        } else {
-          toastr.error(data.message, data.title);
-        }
+        that.alertToastr(data);
       },
       error: function error(_error) {
         toastr.error('Đã có lỗi không xác định', 'Lỗi');
       }
     });
   },
+  // Add cart
   addCart: function addCart(product_id) {
     var message = {};
+    var that = this;
     $.ajax({
-      url: base_url + '/api/cart/addCart',
+      url: baseURL + '/cart/add',
       method: "POST",
       data: {
-        product_id: product_id
+        id: product_id
       },
       success: function success(response) {
         message = response.message;
+        var countCart = response.countCart;
+        var totalPrice = that.formatCurrency(response.totalPrice);
+        var item = response.item;
 
         if (message.status === 'success') {
-          toastr.success(message.message, message.title);
-        } else if (message.status === 'exist') {
-          toastr.info(message.message, message.title);
-        } else if (message.status === 'fail') {
-          toastr.warning(message.message, message.title);
-        } else {
-          toastr.error(message.message, message.title);
+          $('#list-cart-header').append('<li class="cart-item-' + product_id + '">\n' + '    <div class="single-shop-cart-wrapper">\n' + '        <div class="shop-cart-img">\n' + '            <a href="#"><img src="' + item.image + '" alt="' + item.name + '"></a>\n' + '        </div>\n' + '        <div class="shop-cart-info">\n' + '            <h5><a href="' + baseURL + '/product/' + item.slug + '">' + item.name + '</a></h5>\n' + '            <span class="price">' + that.formatCurrency(item.price) + '</span>\n' + '            <span class="quantity">Qty: ' + item.quantity + '</span>\n' + '            <span class="cart-remove"><a onclick="Frontend.removeItemCart(' + product_id + ')"><i class="fa fa-times"></i></a></span>\n' + '        </div>\n' + '    </div>\n' + '</li>').show('slow');
+          $('.cart-count').text(countCart).fadeIn();
+          $('.cart-total-price').text(totalPrice).fadeIn();
         }
+
+        if (message.status === 'info') {
+          $('.cart-item-' + product_id).find('.single-shop-cart-wrapper > .shop-cart-info > .quantity').text('Qty: ' + item.quantity);
+          $('.cart-total-price').text(that.formatCurrency(totalPrice));
+        }
+
+        that.alertToastr(message);
       },
       error: function error(_error2) {
         toastr.error('Đã có lỗi không xác định', 'Lỗi');
       }
     });
   },
+  // Comment
   comment: function comment(type, id) {
     var _$$val, _$$val2;
 
     var user_id = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var that = this;
     $('.comment-form').validate({
       rules: {
         comment: {
@@ -59580,7 +59608,7 @@ Frontend = {
       }
     });
     $.ajax({
-      url: base_url + '/api/post-comment',
+      url: baseURL + '/api/post-comment',
       method: 'POST',
       data: {
         type: type,
@@ -59592,15 +59620,7 @@ Frontend = {
       },
       success: function success(response) {
         var data = response;
-
-        if (data.status === 'warning') {
-          toastr.warning(data.message, data.title);
-        } else if (data.status === 'success') {
-          toastr.success(data.message, data.title);
-        } else {
-          toastr.error('Đã có lỗi không xác định', 'Lỗi');
-        } // reload page
-
+        that.alertToastr(data); // reload page
 
         setTimeout(function () {
           location.reload();
@@ -59611,33 +59631,117 @@ Frontend = {
       }
     });
   },
+  // Subscribe
   subscribe: function subscribe(type) {
     var _$$val3;
 
+    var that = this;
     $.ajax({
-      url: base_url + '/api/subscribe/sendMail',
+      url: baseURL + '/api/subscribe/sendMail',
       method: 'POST',
       data: {
         email: (_$$val3 = $('#subscribe').val()) !== null && _$$val3 !== void 0 ? _$$val3 : null
       },
       success: function success(response) {
         var data = response;
-
-        if (data.status === 'success') {
-          toastr.success(data.message, data.title);
-        } else if (data.status === 'warning') {
-          toastr.warning(data.message, data.title);
-        } else {
-          toastr.error('Đã có lỗi xảy ra khi gửi mail', 'Không thể gửi');
-        }
+        that.alertToastr(data);
       },
       error: function error() {
         toastr.error('Đã có lỗi xảy ra khi gửi mail', 'Không thể gửi');
       }
     });
+  },
+  // Remove item cart
+  removeItemCart: function removeItemCart(id) {
+    that = this;
+    $.ajax({
+      url: baseURL + '/cart/remove',
+      method: "POST",
+      data: {
+        id: id
+      },
+      success: function success(response) {
+        var message = response.message;
+        var countCart = response.countCart;
+        var totalPrice = that.formatCurrency(response.totalPrice);
+
+        if (message.status !== 'error') {
+          $('.cart-count').text(countCart).fadeIn();
+          $('.cart-total-price').text(totalPrice).fadeIn();
+          $('.cart-item-' + id).toggle('slow');
+        }
+
+        that.alertToastr(message);
+      },
+      error: function error() {
+        toastr.error('Đã có lỗi không xác định', 'Lỗi');
+      }
+    });
+  },
+  // Update all quantiry cart
+  updateCart: function updateCart() {
+    var that = this;
+    $.ajax({
+      url: baseURL + '/cart/update',
+      method: "POST",
+      data: {
+        id: $("input[name='id']").map(function () {
+          return $(this).val();
+        }).get(),
+        quantity: $('input[name="quantity"]').map(function () {
+          return $(this).val();
+        }).get()
+      },
+      success: function success(response) {
+        var message = response.message;
+        var countCart = response.countCart;
+        var totalPrice = that.formatCurrency(response.totalPrice);
+        that.alertToastr(message);
+
+        if (message.status === 'success') {
+          $('.cart-count').text(countCart).fadeIn();
+          $('.cart-total-price').text(totalPrice).fadeIn();
+        } // reload page
+
+
+        setTimeout(function () {
+          location.reload();
+        }, 3000);
+      }
+    });
+  },
+  // Apply Coupon
+  applyCoupon: function applyCoupon() {
+    that = this;
+    var code = $('input[name="code"]').val();
+    that = this;
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('input[name="_token"]').val()
+      },
+      url: baseURL + '/checkout/apply-coupon',
+      method: 'POST',
+      data: {
+        code: code
+      },
+      success: function success(response) {
+        var message = response.message;
+        var discount = response.discount;
+        var totalPrice = response.totalPrice;
+        var code = response.code;
+        that.alertToastr(message);
+        $('.order-price').text(that.formatCurrency(totalPrice - discount));
+        $('input[name="voucher_code"]').val(code);
+
+        if (message.status === 'success') {
+          $('.cart-total-price.cart-subtotal').text(that.formatCurrency(totalPrice) + ' - ' + that.formatCurrency(discount)).fadeIn();
+        } else {
+          $('.cart-total-price.cart-subtotal').text(that.formatCurrency(totalPrice));
+        }
+      }
+    });
   }
-};
-$.validate = __webpack_require__(/*! jquery-validation */ "./node_modules/jquery-validation/dist/jquery.validate.js"); // Validate form contact
+}; // Validate form contact
 
 $(document).ready(function () {
   $('#form-contact').validate({
@@ -59677,6 +59781,35 @@ $(document).ready(function () {
       message: {
         required: 'Không được bỏ trống',
         maxlength: 'Tối đa 2000 ký tự'
+      }
+    },
+    errorElement: 'span',
+    errorClass: "invalid-feedback",
+    success: function success(label, element) {
+      $(element).removeClass('is-invalid').addClass('is-valid');
+    },
+    highlight: function highlight(element) {
+      $(element).addClass('is-invalid').removeClass('is-valid');
+    }
+  }); // Payment
+
+  $('#payment').validate({
+    rules: {
+      first_name: {
+        required: true
+      },
+      last_name: {
+        required: true
+      },
+      address: {
+        required: true
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      phone: {
+        required: true
       }
     },
     errorElement: 'span',

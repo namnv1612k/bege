@@ -88,29 +88,38 @@
                             <li>
                                 <a href="#">
                                     <span class="cart-icon">
-                                        <i class="ion-bag"></i><sup>3</sup>
+                                        <i class="ion-bag"></i><sup class="cart-count">{{ \App\Http\Controllers\Frontend\CartController::countCart() }}</sup>
                                     </span>
                                     <span class="cart-text">
-                                        <span class="cart-text-title">{{ __('span.my_cart') }} <br> <strong>@money(123)</strong> </span>
+                                        <span class="cart-text-title">{{ __('span.my_cart') }} <br> <strong class="cart-total-price">@money( \App\Http\Controllers\Frontend\CartController::totalPrice() )</strong> </span>
                                     </span>
                                 </a>
                                 <ul>
-                                    <li>
-                                        <div class="single-shop-cart-wrapper">
-                                            <div class="shop-cart-img">
-                                                <a href="#"><img src="images/product/1.jpg" alt="Image of Product"></a>
-                                            </div>
-                                            <div class="shop-cart-info">
-                                                <h5><a href="{{ route('cart') }}">sport t-shirt men</a></h5>
-                                                <span class="price">£515.00</span>
-                                                <span class="quantaty">{{ __('cart.qty') }} 1</span>
-                                                <span class="cart-remove"><a href="#"><i class="fa fa-times"></i></a></span>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    <div style="overflow-y: auto; max-height: 300px" id="list-cart-header">
+                                        @if(session(CART) != null)
+                                            <?php $key = 0 ?>
+                                            @foreach(session(CART) as $keycart => $item)
+                                                <?php $key++ ?>
+                                                <li class="cart-item-{{ $keycart }}">
+                                                    <div class="single-shop-cart-wrapper">
+                                                        <div class="shop-cart-img">
+                                                            <a href="#"><img src="{{ $item['image'] }}" alt="{{ $item['name'] }}"></a>
+                                                        </div>
+                                                        <div class="shop-cart-info">
+                                                            <h5><a href="{{ route('cart') }}">{{ $item['name'] }}</a></h5>
+                                                            <span class="price">@money($item['price'])</span>
+                                                            <span class="quantity">{{ __('cart.qty') }} {{ $item['quantity'] }}</span>
+                                                            <span class="cart-remove"><a onclick="Frontend.removeItemCart({{ $keycart }})"><i class="fa fa-times"></i></a></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                    </div>
+
                                     <li>
                                         <div class="shop-cart-total">
-                                            <p>{{ __('cart.subtotal') }}: <span class="pull-right">£880.00</span></p>
+                                            <p>{{ __('cart.subtotal') }}: <span class="pull-right cart-total-price">@money( \App\Http\Controllers\Frontend\CartController::totalPrice() )</span></p>
                                         </div>
                                     </li>
                                     <li>

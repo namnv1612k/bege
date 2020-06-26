@@ -23,8 +23,8 @@ class VouchersSeeder extends Seeder
                     ' % ( đơn hàng tối thiểu ' .
                     number_format($condition, 0, '', ',') . 'đ )',
                 'code' => strtoupper(uniqid()),
-                'day_start' => '2020-06-1 17:07:44',
-                'day_end' => '2020-06-26 17:07:44',
+                'start_at' => '2020-06-1 17:07:44',
+                'end_at' => '2020-06-26 17:07:44',
                 'discount' => $discount,
                 'condition' => $condition,
                 'max_discount' => rand(10000, 500000),
