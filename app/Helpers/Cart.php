@@ -37,7 +37,7 @@ class Cart
             $message = [
                 'status' => SUCCESS,
                 'title' => 'Success',
-                'message' => 'Đã thêm ' . $product->name . ' vào giỏ'
+                'content' => 'Đã thêm ' . $product->name . ' vào giỏ'
             ];
         } else {
             if (isset($cart[$id])) {
@@ -46,7 +46,7 @@ class Cart
                 $message = [
                     'status' => INFO,
                     'title' => 'Cập nhật',
-                    'message' => 'Thêm số lượng ' . $product->name
+                    'content' => 'Thêm số lượng ' . $product->name
                 ];
             } else {
                 $cart[$id] = [
@@ -61,7 +61,7 @@ class Cart
                 $message = [
                     'status' => SUCCESS,
                     'title' => 'Success',
-                    'message' => 'Đã thêm ' . $product->name . ' vào giỏ'
+                    'content' => 'Đã thêm ' . $product->name . ' vào giỏ'
                 ];
             }
         }
@@ -75,7 +75,7 @@ class Cart
             $message = [
                 'status' => WARNING,
                 'title' => 'Warning',
-                'message' => 'Giỏ hàng trống'
+                'content' => 'Giỏ hàng trống'
             ];
         } else {
             for ($i = 0; $i < count($cart); $i++) {
@@ -91,7 +91,7 @@ class Cart
             $message = [
                 'status' => SUCCESS,
                 'title' => 'Success',
-                'message' => 'Cập nhật thành công'
+                'content' => 'Cập nhật thành công'
             ];
         }
         session()->flash(ALERT_TOASTR, json_encode($message));

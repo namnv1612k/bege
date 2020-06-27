@@ -22,13 +22,13 @@ class ContactController extends Controller
             $mess = [
                 'status' => INFO,
                 'title' => '',
-                'message' => 'Email không thành công.'
+                'content' => 'Email không thành công.'
             ];
         }
         $mess = [
             'status' => SUCCESS,
             'title' => '',
-            'message' => 'Chúng tôi đã gửi mail liên hệ đến bạn.'
+            'content' => 'Chúng tôi đã gửi mail liên hệ đến bạn.'
         ];
         session()->flash(ALERT_TOASTR, json_encode($mess));
         return redirect()->route('contact');
@@ -40,7 +40,7 @@ class ContactController extends Controller
             $result = [
                 'status' => WARNING,
                 'title' => 'Thiếu địa chỉ email',
-                'message' => 'Email không được bỏ trống.'
+                'content' => 'Email không được bỏ trống.'
             ];
         } else {
             Mail::to($request->email)->send(new MailContact());
@@ -48,13 +48,13 @@ class ContactController extends Controller
                 $result = [
                     'status' => WARNING,
                     'title' => 'Lỗi gửi mail',
-                    'message' => 'Có lỗi xảy ra, email chưa được gửi.'
+                    'content' => 'Có lỗi xảy ra, email chưa được gửi.'
                 ];
             } else {
                 $result = [
                     'status' => SUCCESS,
                     'title' => 'Đã liên hệ',
-                    'message' => 'Chúng tôi đã gửi email tới bạn.'
+                    'content' => 'Chúng tôi đã gửi email tới bạn.'
                 ];
             }
         }

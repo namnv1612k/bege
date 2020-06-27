@@ -28,14 +28,14 @@ class CartController extends Controller
                 $message = [
                     'status' => ERROR,
                     'title' => 'Error',
-                    'message' => 'Sản phẩm không tìm thấy'
+                    'content' => 'Sản phẩm không tìm thấy'
                 ];
                 dd('Sản phẩm không tìm thấy');
             } elseif ($product->stocks == 0) { // If product stock = 0
                 $message = [
                     'status' => WARNING,
                     'title' => 'Hết hàng',
-                    'message' => $product->name . ' đã hết hàng.'
+                    'content' => $product->name . ' đã hết hàng.'
                 ];
                 dd($product->name . ' đã hết hàng.');
             } else {
@@ -50,7 +50,7 @@ class CartController extends Controller
             $message = [
                 'status' => WARNING,
                 'title' => 'Warning',
-                'message' => 'Có lỗi không xác định'
+                'content' => 'Có lỗi không xác định'
             ];
         }
         return response()->json(compact('message', 'countCart', 'totalPrice', 'item'));
@@ -79,7 +79,7 @@ class CartController extends Controller
             $message = [
                 'status' => ERROR,
                 'title' => 'Error',
-                'message' => 'Không thể xóa Item'
+                'content' => 'Không thể xóa Item'
             ];
         }
         return response()->json(compact('message', 'countCart', 'totalPrice'));

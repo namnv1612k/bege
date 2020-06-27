@@ -35,8 +35,6 @@
 
                             <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Orders</a>
 
-                            <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> Download</a>
-
                             <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment
                                 Method</a>
 
@@ -90,63 +88,20 @@
                                             </thead>
 
                                             <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Aug 22, 2018</td>
-                                                <td>Pending</td>
-                                                <td>$3000</td>
-                                                <td><a href="cart.html" class="btn">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>July 22, 2018</td>
-                                                <td>Approved</td>
-                                                <td>$200</td>
-                                                <td><a href="cart.html" class="btn">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>June 12, 2017</td>
-                                                <td>On Hold</td>
-                                                <td>$990</td>
-                                                <td><a href="cart.html" class="btn">View</a></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Tab Content End -->
-
-                            <!-- Single Tab Content Start -->
-                            <div class="tab-pane fade" id="download" role="tabpanel">
-                                <div class="myaccount-content">
-                                    <h3>Downloads</h3>
-
-                                    <div class="myaccount-table table-responsive text-center">
-                                        <table class="table table-bordered">
-                                            <thead class="thead-light">
-                                            <tr>
-                                                <th>Product</th>
-                                                <th>Date</th>
-                                                <th>Expire</th>
-                                                <th>Download</th>
-                                            </tr>
-                                            </thead>
-
-                                            <tbody>
-                                            <tr>
-                                                <td>Haven - Free Real Estate PSD Template</td>
-                                                <td>Aug 22, 2018</td>
-                                                <td>Yes</td>
-                                                <td><a href="#" class="btn">Download File</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>HasTech - Profolio Business Template</td>
-                                                <td>Sep 12, 2018</td>
-                                                <td>Never</td>
-                                                <td><a href="#" class="btn">Download File</a></td>
-                                            </tr>
+                                            @if($orders != null)
+                                                <?php $i = 0 ?>
+                                                @foreach($orders as $order)
+                                                    <?php $i++ ?>
+                                                    <tr>
+                                                        <td>{{ $i }}</td>
+                                                        <td>{{ Carbon\Carbon::parse($order->created_at)->format(TIME_STAMP_FORMAT) }}</td>
+                                                        <td>{{ $order->status_delivery }}</td>
+                                                        <td>@money($order->total)</td>
+                                                        <td><a href="#" class="btn">View</a></td>
+                                                    </tr>
+                                                @endforeach
+                                                {{ $orders->appends(request()->except('page'))->links() }}
+                                            @endif
                                             </tbody>
                                         </table>
                                     </div>

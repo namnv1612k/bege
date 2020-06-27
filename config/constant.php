@@ -1,13 +1,19 @@
 <?php
 define('ACTIVE', 1);
 define('NOT_ACTIVE', 0);
+
 define('ADMIN', 1);
 define('USER', 0);
 define('EMPLOYEE', 2);
+
 define('PAGINATION_PRODUCT', 12);
 define('PAGINATION_BLOG', 5);
+define('PAGINATION_ORDER', 3);
+define('PAGINATION_WISHLIST', 5);
+
 define('LIMIT_CATEGORY', 12);
 define('LIMIT_TAG', 10);
+
 define('SUCCESS', 'success');
 define('FAIL', 'fail');
 define('EXIST', 'exist');

@@ -19,10 +19,15 @@ class CreateOrdersTable extends Migration
             $table->float('total', 12, 3)->comment('Tổng số tiền hóa đơn');
             $table->string('address')->comment('Địa chỉ giao hàng');
             $table->string('phone')->comment('Số điện thoại');
-            $table->text('message')->comment('Lời nhắn');
+            $table->text('message')->comment('Lời nhắn')->nullable();
             $table->boolean('payment_method')
                 ->comment('Phương thức thanh toán: 0. Tiền mặt, 1. Paypal, 2. Credit cart');
-            $table->boolean('status')->comment('Trạng thái: 1. Đã thanh toán, 0. Chưa thanh toán');
+            $table->boolean('status_delivery')
+                ->comment('Trạng thái giao hàng: 0. Chờ xác nhận, 1. Đã chốt đơn, 2. Đang vận chuyển, 3. Đã giao hàng')
+                ->default(0);
+            $table->boolean('status_order')
+                ->comment('Trạng thái đặt hàng: 1. Đã thanh toán, 0. Chưa thanh toán')
+                ->default(0);
             $table->timestamps();
 
             // Foreign key

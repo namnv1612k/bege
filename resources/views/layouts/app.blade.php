@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
     <script>
-        const base_url  = '<?php echo env('APP_URL') ?>'
+        const base_url  = '<?php echo env('APP_URL') ?>';
     </script>
 </head>
 <body>
@@ -41,6 +41,10 @@
         @include('layouts.footer')
     </div>
 </body>
+
+<script>
+
+</script>
 
 <script src="{{ asset('js/app.js') }}"></script>
 <!-- All plugins here -->

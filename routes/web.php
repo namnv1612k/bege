@@ -27,7 +27,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     /* User */
     Route::group(['middleware' => 'auth'], function () {
         Route::get('my-account', 'UserController@info')->name('my-account');
-
+        Route::group(['prefix' => 'wishlist'], function () {
+            Route::get('/', 'UserController@wishlist')->name('wishlist');
+            Route::get('remove/{id}', 'UserController@removeWish')->name('remove-wish');
+        });
     });
 
     /* Shop */

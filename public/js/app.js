@@ -59507,23 +59507,29 @@ window.Echo = new Echo({
 /* Frontend */
 $.validate = __webpack_require__(/*! jquery-validation */ "./node_modules/jquery-validation/dist/jquery.validate.js");
 var baseURL = base_url;
+var SUCCESS = 'success';
+var ERROR = 'error';
+var FAIL = 'fail';
+var INFO = 'info';
+var WARNING = 'warning';
+var EXIST = 'exist';
 Frontend = {
   // Function alert by Toastr Global
   alertToastr: function alertToastr(value) {
-    if (value.status === 'success') {
-      toastr.success(value.message, value.title);
-    } else if (value.status === 'exist') {
-      toastr.info(value.message, value.title);
-    } else if (value.status === 'fail') {
-      toastr.warning(value.message, value.title);
-    } else if (value.status === 'warning') {
-      toastr.warning(value.message, value.title);
-    } else if (value.status === 'info') {
-      toastr.info(value.message, value.title);
+    if (value.status === SUCCESS) {
+      toastr.success(value.content, value.title);
+    } else if (value.status === EXIST) {
+      toastr.info(value.content, value.title);
+    } else if (value.status === FAIL) {
+      toastr.warning(value.content, value.title);
+    } else if (value.status === WARNING) {
+      toastr.warning(value.content, value.title);
+    } else if (value.status === INFO) {
+      toastr.info(value.content, value.title);
     } else if (value.status === null) {} else {
-      var _value$message, _value$title;
+      var _value$content, _value$title;
 
-      toastr.error((_value$message = value.message) !== null && _value$message !== void 0 ? _value$message : 'Đã xảy ra lỗi không xác định', (_value$title = value.title) !== null && _value$title !== void 0 ? _value$title : 'Error');
+      toastr.error((_value$content = value.content) !== null && _value$content !== void 0 ? _value$content : 'Đã xảy ra lỗi không xác định', (_value$title = value.title) !== null && _value$title !== void 0 ? _value$title : 'Error');
     }
   },
   formatCurrency: function formatCurrency(price) {
@@ -59550,6 +59556,25 @@ Frontend = {
       },
       error: function error(_error) {
         toastr.error('Đã có lỗi không xác định', 'Lỗi');
+      }
+    });
+  },
+  removeWish: function removeWish(id) {
+    that = this;
+    $.ajax({
+      url: baseURL + '/wishlist/remove/' + id,
+      method: 'GET',
+      success: function success(response) {
+        var message = response;
+
+        if (message.status === SUCCESS) {
+          $('.wish-item-' + id).toggle('slow');
+        }
+
+        that.alertToastr(message);
+      },
+      error: function error(_error2) {
+        that.alertToastr(message);
       }
     });
   },
@@ -59582,7 +59607,7 @@ Frontend = {
 
         that.alertToastr(message);
       },
-      error: function error(_error2) {
+      error: function error(_error3) {
         toastr.error('Đã có lỗi không xác định', 'Lỗi');
       }
     });
@@ -59626,7 +59651,7 @@ Frontend = {
           location.reload();
         }, 3000);
       },
-      error: function error(_error3) {
+      error: function error(_error4) {
         toastr.error('Đã có lỗi không xác định', 'Lỗi');
       }
     });
@@ -59665,7 +59690,7 @@ Frontend = {
         var countCart = response.countCart;
         var totalPrice = that.formatCurrency(response.totalPrice);
 
-        if (message.status !== 'error') {
+        if (message.status !== ERROR) {
           $('.cart-count').text(countCart).fadeIn();
           $('.cart-total-price').text(totalPrice).fadeIn();
           $('.cart-item-' + id).toggle('slow');
@@ -59701,7 +59726,7 @@ Frontend = {
         $('.order-price').text(that.formatCurrency(totalPrice - discount));
         $('input[name="voucher_code"]').val(code);
 
-        if (message.status === 'success') {
+        if (message.status === SUCCESS) {
           $('.cart-total-price.cart-subtotal').text(that.formatCurrency(totalPrice) + ' - ' + that.formatCurrency(discount)).fadeIn();
         } else {
           $('.cart-total-price.cart-subtotal').text(that.formatCurrency(totalPrice));

@@ -14,7 +14,7 @@ class CategoryController extends Controller
             $categories = Category::all()->where('is_active', '=', ACTIVE);
             return response()->json($categories);
         } catch (\Exception $exception){
-            return response()->json(['status' => 'fail'], 502);
+            return response()->json(['status' => FAIL], 502);
         }
     }
 

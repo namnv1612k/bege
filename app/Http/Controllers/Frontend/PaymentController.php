@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Helpers\Cart;
 use App\Helpers\ProductHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -33,7 +34,7 @@ class PaymentController extends Controller
                 $message = [
                     'status' => INFO,
                     'title' => '',
-                    'message' => 'Không tìm thấy mã giảm giá'
+                    'content' => 'Không tìm thấy mã giảm giá'
                 ];
             } else {
                 $totalPrice = CartController::totalPrice();
@@ -41,13 +42,13 @@ class PaymentController extends Controller
                     $message = [
                         'status' => INFO,
                         'title' => 'Không thể áp dụng',
-                        'message' => 'Mã giảm giá đã hết hạn'
+                        'content' => 'Mã giảm giá đã hết hạn'
                     ];
                 } elseif ($totalPrice < $voucher->condition) { // Nếu giá trị order nhỏ hom điều kiện giảm giá
                     $message = [
                         'status' => INFO,
                         'title' => 'Không thể áp dụng',
-                        'message' => 'Giá trị order tối thiểu ' . ProductHelper::vndFormat($voucher->condition)
+                        'content' => 'Giá trị order tối thiểu ' . ProductHelper::vndFormat($voucher->condition)
                     ];
                 } else {
                     // Nếu giá trị giảm lớn hơn giá trị discount tối đa thì discount sẽ bẳng giá trị tối đa
@@ -59,7 +60,7 @@ class PaymentController extends Controller
                     $message = [
                         'status' => SUCCESS,
                         'title' => 'Đã giảm ' . ProductHelper::vndFormat($discount),
-                        'message' => 'Đã áp dụng mã giảm giá ' . $voucher->discount . ' % tối đa ' . ProductHelper::vndFormat($voucher->max_discount)
+                        'content' => 'Đã áp dụng mã giảm giá ' . $voucher->discount . ' % tối đa ' . ProductHelper::vndFormat($voucher->max_discount)
                     ];
                     $totalPrice = CartController::totalPrice();
                     $code = $voucher->code;
@@ -69,7 +70,7 @@ class PaymentController extends Controller
             $message = [
                 'status' => ERROR,
                 'title' => 'Error',
-                'message' => 'Đã xảy ra lỗi'
+                'content' => 'Đã xảy ra lỗi'
             ];
         }
 
@@ -79,8 +80,7 @@ class PaymentController extends Controller
     public function payment(Request $request)
     {
         try {
-            $user = Cashier::findBillable($stripeId);
-            $totalPrice = CartController::totalPrice();
+            $totalPrice = Cart::totalPrice();
 
             if ($request->voucher_code != null) {
                 $voucher = Voucher::all()
@@ -106,7 +106,7 @@ class PaymentController extends Controller
             $order->message = $request->message ?? '';
             if ($request->payment_method == DEFAULT_PAYMENT) {
                 $order->payment_method = 0;
-                $order->status = 0;
+                $order->status_order = 0;
 
                 // Tạo đơn và đơn hàng chi tiết
                 $order->save();
@@ -127,13 +127,24 @@ class PaymentController extends Controller
             } elseif ($request->payment_method == STRIPE_PAYMENT) {
                 $order->payment_method = 1;
                 // Api thanh toán ngoài (Paypal) nếu thành công thì trả status = 1 nếu k thì hủy thanh toán
-                $order->status = 1;
+                $order->status_order = 1;
 
 
             }
+            session()->forget(CART);
+            $message = [
+                'status' => SUCCESS,
+                'title' => 'Đặt hàng thành công',
+                'content' => 'Kiểm tra trong tài khoản hoặc email'
+            ];
         } catch (\Exception $exception) {
-            return abort(404);
+            $message = [
+                'status' => WARNING,
+                'title' => 'Đặt hàng không thành công',
+                'content' => 'Đã có lỗi trong quá trình đặt hàng'
+            ];
         }
-//        return true;
+        session()->flash(ALERT_TOASTR, json_encode($message));
+        return redirect()->route('my-account');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Tag;
 use App\Models\Wishlist;
@@ -112,7 +113,6 @@ class ProductController extends Controller
             return view('errors/404');
         }
         $product_related = Product::all()->random(5);
-//        dd($product_related);
         return view('product/detail', compact('product', 'product_related'));
     }
 
@@ -122,7 +122,7 @@ class ProductController extends Controller
             $result = [
                 'status' => FAIL,
                 'title' => 'Không thể thêm',
-                'message' => 'Bạn phải đăng nhập để sử dụng chức năng này',
+                'content' => 'Bạn phải đăng nhập để sử dụng chức năng này',
             ];
         } else {
             try {
@@ -135,7 +135,7 @@ class ProductController extends Controller
                     $result = [
                         'status' => EXIST,
                         'title' => 'Đã tồn tại',
-                        'message' => 'Sản phẩm ' . $product->name . ' đã ở trong danh sách yêu thích',
+                        'content' => 'Sản phẩm ' . $product->name . ' đã ở trong danh sách yêu thích',
                     ];
                 } else {
                     $wishlist = new Wishlist;
@@ -146,7 +146,7 @@ class ProductController extends Controller
                     $result = [
                         'status' => SUCCESS,
                         'title' => 'Thành công',
-                        'message' => 'Đã thêm ' . $product->name . ' vào danh sách yêu thích',
+                        'content' => 'Đã thêm ' . $product->name . ' vào danh sách yêu thích',
                     ];
                 }
 
@@ -154,9 +154,53 @@ class ProductController extends Controller
                 $result = [
                     'status' => FAIL,
                     'title' => 'Có Lỗi xảy ra',
-                    'message' => 'Có lỗi không xác định đã xảy ra',
+                    'content' => 'Có lỗi không xác định đã xảy ra',
                 ];
             }
+        }
+
+        return response()->json($result);
+    }
+
+    public function postComment(Request $request)
+    {
+        if ($request->user_id == null) {
+            $result = [
+                'status' => WARNING,
+                'title' => 'Lỗi đăng nhập',
+                'content' => 'Bạn cần đăng nhập để bình luận'
+            ];
+        } else {
+            if ($request->type == 'blog') {
+                DB::table('blog_comments')->insert([
+                    'content' => $request->comment,
+                    'reply_for' => $request->reply_for ?? null,
+                    'user_id' => $request->user_id,
+                    'blog_id' => $request->id
+                ]);
+            } elseif ($request->type == 'product') {
+                DB::table('comments')->insert([
+                    'content' => $request->comment,
+                    'reply_for' => $request->reply_for ?? null,
+                    'user_id' => $request->user_id,
+                    'product_id' => $request->id,
+                    'rate' => $request->rate ?? 5
+                ]);
+
+                $commens = Comment::all()->where('product_id', '=', $request->id);
+                $total_rate = 0;
+                foreach ($commens as $value) {
+                    $total_rate += $value->rate;
+                }
+                $tb_rate_product = $total_rate/count($commens);
+
+                Product::find($request->id)->update(['rate' => $tb_rate_product]);
+            }
+            $result = [
+                'status' => SUCCESS,
+                'title' => 'Thành công',
+                'content' => 'Bạn đã thêm 1 bình luận'
+            ];
         }
 
         return response()->json($result);

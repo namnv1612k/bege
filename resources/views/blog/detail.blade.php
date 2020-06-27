@@ -43,7 +43,7 @@
                                 <h1>{{ $blog->name }}</h1>
                                 <div class="post-meta">
                                     <a href="#"  class="post-author"><i class="fa fa-user"></i>Posted by {{ $blog->user->first_name . ' ' . $blog->user->last_name }}</a>
-                                    <a href="#" class="post-date"><i class="fa fa-calendar"></i> {{ \Carbon\Carbon::parse($blog->created_at)->format(DATE_FORMAT) }} </a>
+                                    <a href="#" class="post-date"><i class="fa fa-calendar"></i> {{ Carbon\Carbon::parse($blog->created_at)->format(DATE_FORMAT) }} </a>
                                 </div>
                             </div>
                             <div class="postinfo-wrapper">

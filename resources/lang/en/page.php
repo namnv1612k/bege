@@ -61,7 +61,7 @@ return [
         'title' => 'Gift Vouchers',
         'content' => []
     ],
-    'wish_list' => [
+    'wishlist' => [
         'title' => 'Wishlist',
         'content' => []
     ],

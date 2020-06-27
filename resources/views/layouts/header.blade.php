@@ -29,7 +29,7 @@
                                             <li><a class="text-danger" href="{{ route('admin') }}">{{ __('page.admin.title') }}</a></li>
                                         @endif
                                         <li><a href="{{ route('my-account') }}">{{ __('page.my_account.title') }}</a></li>
-                                        <li><a href="{{ route('checkout') }}">{{ __('page.checkout.title') }}</a></li>
+                                        <li><a href="{{ route('wishlist') }}">{{ __('page.wishlist.title') }}</a></li>
                                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
                                             <form action="{{ route('logout') }}" method="post" style="display: none" id="logout-form">
                                                 @csrf

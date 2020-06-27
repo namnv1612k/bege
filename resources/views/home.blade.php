@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('titlePage', env('APP_NAME'))
 @section('content')
     <!-- Slider area -->
     <div class="slider-area">

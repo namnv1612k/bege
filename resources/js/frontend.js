@@ -1,22 +1,28 @@
 /* Frontend */
 $.validate = require('jquery-validation');
 const baseURL = base_url;
+const SUCCESS = 'success';
+const ERROR   = 'error';
+const FAIL    = 'fail';
+const INFO    = 'info';
+const WARNING = 'warning';
+const EXIST   = 'exist';
 Frontend = {
     // Function alert by Toastr Global
     alertToastr: function (value) {
-        if (value.status === 'success') {
-            toastr.success(value.message, value.title);
-        } else if (value.status === 'exist') {
-            toastr.info(value.message, value.title);
-        } else if (value.status === 'fail') {
-            toastr.warning(value.message, value.title);
-        } else if (value.status === 'warning') {
-            toastr.warning(value.message, value.title);
-        } else if (value.status === 'info') {
-            toastr.info(value.message, value.title);
+        if (value.status === SUCCESS) {
+            toastr.success(value.content, value.title);
+        } else if (value.status === EXIST) {
+            toastr.info(value.content, value.title);
+        } else if (value.status === FAIL) {
+            toastr.warning(value.content, value.title);
+        } else if (value.status === WARNING) {
+            toastr.warning(value.content, value.title);
+        } else if (value.status === INFO) {
+            toastr.info(value.content, value.title);
         } else if (value.status === null) {
         } else {
-            toastr.error(value.message ?? 'Đã xảy ra lỗi không xác định', value.title ?? 'Error');
+            toastr.error(value.content ?? 'Đã xảy ra lỗi không xác định', value.title ?? 'Error');
         }
     },
 
@@ -45,6 +51,24 @@ Frontend = {
             },
             error: function (error) {
                 toastr.error('Đã có lỗi không xác định', 'Lỗi');
+            }
+        })
+    },
+
+    removeWish: function (id) {
+        that = this;
+        $.ajax({
+            url: baseURL + '/wishlist/remove/' + id,
+            method: 'GET',
+            success: function (response) {
+                let message = response;
+                if (message.status === SUCCESS) {
+                    $('.wish-item-' + id).toggle('slow');
+                }
+                that.alertToastr(message)
+            },
+            error: function (error) {
+                that.alertToastr(message)
             }
         })
     },
@@ -167,7 +191,7 @@ Frontend = {
                 let message = response.message;
                 let countCart = response.countCart;
                 let totalPrice = that.formatCurrency(response.totalPrice);
-                if (message.status !== 'error') {
+                if (message.status !== ERROR) {
                     $('.cart-count').text(countCart).fadeIn();
                     $('.cart-total-price').text(totalPrice).fadeIn();
                     $('.cart-item-' + id).toggle('slow');
@@ -204,7 +228,7 @@ Frontend = {
 
                 $('.order-price').text(that.formatCurrency(totalPrice - discount));
                 $('input[name="voucher_code"]').val(code);
-                if (message.status === 'success') {
+                if (message.status === SUCCESS) {
                     $('.cart-total-price.cart-subtotal').text(that.formatCurrency(totalPrice) + ' - ' + that.formatCurrency(discount)).fadeIn();
                 } else {
                     $('.cart-total-price.cart-subtotal').text(that.formatCurrency(totalPrice));
