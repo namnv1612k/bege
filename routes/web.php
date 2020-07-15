@@ -70,11 +70,19 @@ Route::group(['namespace' => 'Frontend'], function () {
     })->name('about-us');
 
     /* Contact */
-    Route::get('contact', 'ContactController@index')->name('contact');
-    Route::post('contact/sendMail', 'ContactController@sendMail')->name('contact-mail');
+    Route::group(['prefix' => 'contact'], function () {
+        Route::get('/', 'ContactController@index')->name('contact');
+        Route::post('sendMail', 'ContactController@sendMail')->name('contact-mail');
+    });
 
     /* Faq */
     Route::get('faq', 'FaqController@index')->name('faq');
+
+    /* Service */
+    Route::get('service', 'ServiceController@index')->name('service');
+
+    /* Portfolio */
+    Route::get('portfolio', 'PortfolioController@index')->name('portfolio');
 });
 
 /* Backend */
@@ -83,16 +91,27 @@ Route::group(['middleware' => 'employee', 'prefix' => 'admin', 'namespace' => 'B
         return redirect(route('admin-analytic'));
     })->name('admin');
     // Dashboard
-    Route::get('/analytics', 'DashboardController@index')->name('admin-analytic');
-    Route::get('/sales', 'DashboardController@index')->name('admin-sales');
+    Route::get('analytics', 'DashboardController@index')->name('admin-analytic');
+    Route::get('sales', 'DashboardController@sale')->name('admin-sales');
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', 'ProductController@list')->name('admin-product-list');
-        Route::get('/create', 'ProductController@create')->name('admin-product-create');
+        Route::get('create', 'ProductController@create')->name('admin-product-create');
         Route::get('/{id}', 'ProductController@show')->name('admin-product-show');
         Route::get('/{id}/edit', 'ProductController@edit')->name('admin-product-edit');
-        Route::post('/update', 'ProductController@update')->name('admin-product-update');
-        Route::post('/store', 'ProductController@store')->name('admin-product-store');
+        Route::post('update', 'ProductController@update')->name('admin-product-update');
+        Route::post('store', 'ProductController@store')->name('admin-product-store');
+        Route::get('delete/{id}', 'ProductController@delete')->name('admin-product-delete');
+    });
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'UserController@list')->name('admin-user-list');
+        Route::get('create', 'UserController@create')->name('admin-user-create');
+        Route::get('/{id}', 'UserController@show')->name('admin-user-show');
+        Route::get('/{id}/edit', 'UserController@edit')->name('admin-user-edit');
+        Route::post('update', 'UserController@update')->name('admin-user-update');
+        Route::post('store', 'UserController@store')->name('admin-user-store');
+        Route::get('delete/{id}', 'UserController@delete')->name('admin-user-delete');
     });
 });
 
@@ -100,3 +119,5 @@ Route::group(['middleware' => 'employee', 'prefix' => 'admin', 'namespace' => 'B
 Route::fallback(function () {
     return view('errors/404');
 });
+
+Route::get('xem-san-pham.{id}.html', 'Frontend\ProductController@xem')->name('xem-san-pham');

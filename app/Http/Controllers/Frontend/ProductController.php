@@ -21,12 +21,10 @@ class ProductController extends Controller
         $request->only(['tag', 'category', 'page', 'keyword']);
 
         $categories = Category::all()
-            ->where('is_active', '=', ACTIVE)
             ->where('subcategory', '=', null)
             ->take(LIMIT_CATEGORY);
         $tags = Tag::all()->take(LIMIT_TAG);
         $products_topRate = Product::all()
-            ->where('is_active', '=', ACTIVE)
             ->sortByDesc('rate')
             ->take(3);
 
@@ -37,51 +35,44 @@ class ProductController extends Controller
                     $c->where('slug', '=',  $request->category);
                 })->whereHas('tags', function ($t) use ($request) {
                     $t->where('slug', '=', $request->tag);
-                })->where('is_active', '=', ACTIVE)
-                    ->where('name', 'LIKE', '%' . $request->keyword . '%')
+                })->where('name', 'LIKE', '%' . $request->keyword . '%')
                     ->paginate(PAGINATION_PRODUCT);
             } else {
                 $products = Product::whereHas('categories', function ($c) use ($request) {
                     $c->where('slug', '=',  $request->category);
                 })->whereHas('tags', function ($t) use ($request) {
                     $t->where('slug', '=', $request->tag);
-                })->where('is_active', '=', ACTIVE)
-                    ->paginate(PAGINATION_PRODUCT);
+                })->paginate(PAGINATION_PRODUCT);
             }
 
         } elseif ($request->category != null && $request->tag == null) {
             if ($request->keyword != null) {
                 $products = Product::whereHas('categories', function ($c) use ($request) {
                     $c->where('slug', '=',  $request->category);
-                })->where('is_active', '=', ACTIVE)
-                    ->where('name', 'LIKE', '%' . $request->keyword . '%')
+                })->where('name', 'LIKE', '%' . $request->keyword . '%')
                     ->paginate(PAGINATION_PRODUCT);
             } else {
                 $products = Product::whereHas('categories', function ($c) use ($request) {
                     $c->where('slug', '=',  $request->category);
-                })->where('is_active', '=', ACTIVE)
-                    ->paginate(PAGINATION_PRODUCT);
+                })->paginate(PAGINATION_PRODUCT);
             }
         } elseif ($request->tag != null && $request->category == null) {
             if ($request->keyword != null) {
                 $products = Product::whereHas('tags', function ($t) use ($request) {
                     $t->where('slug', '=',  $request->tag);
-                })->where('is_active', '=', ACTIVE)
-                    ->where('name', 'LIKE', '%' . $request->keyword . '%')
+                })->where('name', 'LIKE', '%' . $request->keyword . '%')
                     ->paginate(PAGINATION_PRODUCT);
             } else {
                 $products = Product::whereHas('tags', function ($t) use ($request) {
                     $t->where('slug', '=',  $request->tag);
-                })->where('is_active', '=', ACTIVE)
-                    ->paginate(PAGINATION_PRODUCT);
+                })->paginate(PAGINATION_PRODUCT);
             }
         } else {
             if ($request->keyword != null) {
-                $products = Product::where('is_active', '=', ACTIVE)
-                    ->where('name', 'LIKE', '%' . $request->keyword . '%')
+                $products = Product::where('name', 'LIKE', '%' . $request->keyword . '%')
                     ->paginate(PAGINATION_PRODUCT);
             } else {
-                $products = Product::where('is_active', '=', ACTIVE)->paginate(PAGINATION_PRODUCT);
+                $products = Product::query()->paginate(PAGINATION_PRODUCT);
             }
         }
 

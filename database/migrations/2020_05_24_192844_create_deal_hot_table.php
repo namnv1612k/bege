@@ -18,8 +18,8 @@ class CreateDealHotTable extends Migration
             $table->integer('product_id')->comment('ID sản phẩm');
             $table->text('desc')->comment('Mô tả nội dung khuyến mãi');
             $table->float('discount', 12, 3)->comment('Giá trị được giảm');
-            $table->timestamp('day_start')->comment('Ngày bắt đầu')->useCurrent();
-            $table->timestamp('day_end')->comment('Ngày kết thúc')->useCurrent();
+            $table->timestamp('start_at')->comment('Ngày bắt đầu')->useCurrent();
+            $table->timestamp('end_at')->comment('Ngày kết thúc')->useCurrent();
             $table->timestamps();
 
             // Foreign key

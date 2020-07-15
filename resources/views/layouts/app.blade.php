@@ -28,6 +28,9 @@
     <script>
         const base_url  = '<?php echo env('APP_URL') ?>';
     </script>
+    @yield('extra-css')
+    <script src="https://js.stripe.com/v3/"></script>
+
 </head>
 <body>
     <!--[if lte IE 9]>
@@ -51,6 +54,8 @@
 <script src="{{ asset('js/plugins.js') }}"></script>
 <!-- Main js  -->
 <script src="{{ asset('js/main.js') }}"></script>
+
+@yield('extra-js')
 
 @if(session(ALERT_TOASTR))
     <script>

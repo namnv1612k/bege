@@ -1,5 +1,10 @@
 @extends('layouts.backend')
 
+@section('extra-css')
+    <link href="{{ asset('backend/plugins/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('backend/assets/css/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css"/>
+@endsection
+
 @section('content')
     <div class="layout-px-spacing">
 
@@ -563,4 +568,8 @@
 
         </div>
     </div>
+@endsection
+@section('extra-js')
+    <script src="{{ asset('backend/plugins/apex/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/dashboard/dash_1.js') }}"></script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Product;
+use App\Scopes\ClientScope;
 use Illuminate\Http\Request;
 
 class ProductHelper
@@ -56,7 +57,7 @@ class ProductHelper
                 'title' => 'Khóa'
             ]
         ];
-        $product = Product::findOrFail($id);
+        $product = Product::query()->withoutGlobalScope(ClientScope::class)->findOrFail($id);
         if ($product->stocks <= 0) {
             $result = $nameClass['out_of_stock'];
         } elseif ($product->is_active == 1) {

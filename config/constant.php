@@ -26,6 +26,7 @@ define('CART', 'Shop Cart');
 define('DATE_FORMAT', 'M - d - Y');
 define('TIME_FORMAT', 'h:m: a');
 define('TIME_STAMP_FORMAT', 'Y-m-d H:i:s');
+define('COUNTDOWN', 'Y/m/d H:i:s');
 
 // Payment
 define('DEFAULT_PAYMENT', 'default');

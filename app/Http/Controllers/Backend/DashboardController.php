@@ -10,7 +10,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-//        $css = BackendHelper::css('body');
-        return view('backend/dashboard');
+        return view('backend/dashboard/analytic');
+    }
+
+    public function sale()
+    {
+        return view('backend/dashboard/sale');
     }
 }

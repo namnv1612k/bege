@@ -148,7 +148,7 @@
                                                     {!! $product->intro !!}
                                                 </div>
                                                 <div class="deal-counter">
-                                                    <div data-countdown="2020/08/02"></div>
+                                                    <div data-countdown="2020/07/02 00:00:00"></div>
                                                 </div>
                                             </div>
                                         </div>

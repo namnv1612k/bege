@@ -11,6 +11,9 @@ use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Cashier\Cashier;
+use Stripe\ApplePayDomain;
+use Stripe\PaymentIntent;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
@@ -79,6 +82,7 @@ class PaymentController extends Controller
 
     public function payment(Request $request)
     {
+//        dd($request->all());
         try {
             $totalPrice = Cart::totalPrice();
 
@@ -129,9 +133,20 @@ class PaymentController extends Controller
                 // Api thanh toán ngoài (Paypal) nếu thành công thì trả status = 1 nếu k thì hủy thanh toán
                 $order->status_order = 1;
 
+                Stripe::setApiKey('pk_test_51fPtf262Z9p11AQqmZGZK4J003SfLH077');
+                ApplePayDomain::create([
+                    'domain_name' => env('APP_URL')
+                ]);
+
+                PaymentIntent::create([
+                    'amount' => $totalPrice,
+                    'currency' => 'vnd',
+                    'metadata' => ['integration_check' => 'accept_a_payment']
+                ]);
+
 
             }
-            session()->forget(CART);
+            Cart::destroy();
             $message = [
                 'status' => SUCCESS,
                 'title' => 'Đặt hàng thành công',
@@ -143,8 +158,13 @@ class PaymentController extends Controller
                 'title' => 'Đặt hàng không thành công',
                 'content' => 'Đã có lỗi trong quá trình đặt hàng'
             ];
+            session()->flash(ALERT_TOASTR, json_encode($message));
+            return redirect()->route('checkout');
         }
         session()->flash(ALERT_TOASTR, json_encode($message));
-        return redirect()->route('my-account');
+        if (Auth::check()) {
+            return redirect()->route('my-account');
+        }
+        return redirect()->route('cart');
     }
 }

@@ -278,7 +278,7 @@ $(document).ready(function () {
     });
 
     // Payment
-    $('#payment').validate({
+    $('#payment-form').validate({
         rules: {
             first_name: { required: true },
             last_name: { required: true },

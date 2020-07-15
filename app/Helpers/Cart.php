@@ -132,4 +132,9 @@ class Cart
         }
         return false;
     }
+
+    public static function destroy()
+    {
+        session()->forget(CART);
+    }
 }

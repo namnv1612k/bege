@@ -1,6 +1,6 @@
 <?php
 /*
-Master data Sql
+Master data for Sql
 */
 return [
     'order' => [
@@ -19,5 +19,31 @@ return [
             1 => 'Stripe',
             2 => 'Credit card'
         ]
-    ]
+    ],
+    'user' => [
+        'role' => [
+            0 => [
+                'title' => 'Người dùng',
+                'class' => 'shadow-none badge badge-light'
+            ],
+            1 => [
+                'title' => 'Quản trị viên',
+                'class' => 'shadow-none badge badge-warning'
+            ],
+            2 => [
+                'title' => 'Nhân viên',
+                'class' => 'shadow-none badge badge-primary'
+            ]
+        ],
+        'status' => [
+            0 => [
+                'title' => 'Khóa',
+                'class' => 'shadow-none badge badge-warning'
+            ],
+            1 => [
+                'title' => 'Kích hoạt',
+                'class' => 'shadow-none badge badge-success'
+            ]
+        ]
+    ],
 ];

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titlePage', 'Wishlist - ' . env('APP_NAME'))
+@section('titlePage', __('page.wishlist.title') . ' || ' . env('APP_NAME'))
 @section('content')
     <div class="breadcrumbs-container">
         <div class="container">

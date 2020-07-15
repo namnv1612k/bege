@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -35,5 +37,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Cashier::ignoreMigrations();
+
+        User::observe(UserObserver::class);
     }
 }

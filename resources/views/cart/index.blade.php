@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('titlePage', __('page.cart.title') . ' || ' . env('APP_NAME'))
+
 @section('content')
     <div class="breadcrumbs-container">
         <div class="container">

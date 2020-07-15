@@ -3,7 +3,7 @@
     <nav id="compactSidebar">
 
         <div class="theme-logo">
-            <a href="index-2.html">
+            <a href="{{ route('admin') }}">
                 <img src="{{ asset('backend/assets/img/logo.svg') }}" class="navbar-logo" alt="logo">
             </a>
         </div>
@@ -195,7 +195,7 @@
 
             <ul class="submenu-list" data-parent-element="#dashboard">
                 <li class="active">
-                    <a href="index-2.html">
+                    <a href="{{ route('admin-analytic') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                              stroke-linejoin="round" class="feather feather-pie-chart">
@@ -205,7 +205,7 @@
                         Analytics </a>
                 </li>
                 <li>
-                    <a href="index2.html">
+                    <a href="{{ route('admin-sales') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                              stroke-linejoin="round" class="feather feather-shopping-bag">
@@ -852,24 +852,16 @@
                 <p>Lorem ipsum dolor sit amet sed incididunt ut labore et dolore magna aliqua.</p>
             </div>
             <ul class="submenu-list" data-parent-element="#tables">
-                <li>
-                    <a href="table_basic.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                       height="24" viewBox="0 0 24 24" fill="none"
-                                                                       stroke="currentColor" stroke-width="2"
-                                                                       stroke-linecap="round"
-                                                                       stroke-linejoin="round"
-                                                                       class="feather feather-circle"><circle
-                                    cx="12" cy="12" r="10"></circle></svg></span> Basic </a>
-                </li>
+
                 <li class="sub-submenu">
-                    <a role="menu" class="collapsed" data-toggle="collapse" data-target="#datatables"
+                    <a role="menu" class="collapsed" data-toggle="collapse" data-target="#product-sidebar"
                        aria-expanded="false">
                         <div><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                      class="feather feather-circle"><circle cx="12" cy="12"
                                                                                             r="10"></circle></svg></span>
-                            Datatables
+                            Product
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -877,39 +869,38 @@
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </a>
-                    <ul id="datatables" class="collapse" data-parent="#compact_submenuSidebar">
+                    <ul id="product-sidebar" class="collapse" data-parent="#compact_submenuSidebar">
                         <li>
-                            <a href="table_dt_basic.html"> Basic </a>
+                            <a href="{{ route('admin-product-list') }}"> List </a>
                         </li>
                         <li>
-                            <a href="table_dt_basic-dark.html"> Dark </a>
+                            <a href="{{ route('admin-product-create') }}"> Create </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sub-submenu">
+                    <a role="menu" class="collapsed" data-toggle="collapse" data-target="#user-sidebar"
+                       aria-expanded="false">
+                        <div><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-circle"><circle cx="12" cy="12"
+                                                                                            r="10"></circle></svg></span>
+                            User
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round" class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                    <ul id="user-sidebar" class="collapse" data-parent="#compact_submenuSidebar">
+                        <li>
+                            <a href="{{ route('admin-user-list') }}"> List </a>
                         </li>
                         <li>
-                            <a href="table_dt_ordering_sorting.html"> Order Sorting </a>
-                        </li>
-                        <li>
-                            <a href="table_dt_multi-column_ordering.html"> Multi-Column </a>
-                        </li>
-                        <li>
-                            <a href="table_dt_multiple_tables.html"> Multiple Tables</a>
-                        </li>
-                        <li>
-                            <a href="table_dt_alternative_pagination.html"> Alt. Pagination</a>
-                        </li>
-                        <li>
-                            <a href="table_dt_custom.html"> Custom </a>
-                        </li>
-                        <li>
-                            <a href="table_dt_range_search.html"> Range Search </a>
-                        </li>
-                        <li>
-                            <a href="table_dt_html5.html"> HTML5 Export </a>
-                        </li>
-                        <li>
-                            <a href="table_dt_live_dom_ordering.html"> Live DOM ordering </a>
-                        </li>
-                        <li>
-                            <a href="table_dt_miscellaneous.html"> Miscellaneous </a>
+                            <a href="{{ route('admin-user-create') }}"> Create </a>
                         </li>
                     </ul>
                 </li>

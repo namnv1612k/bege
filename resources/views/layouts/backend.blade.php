@@ -9,10 +9,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('titlePage', config('app.name'))</title>
+    <title>@yield('titlePage', env('APP_NAME'))</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('backend/assets/img/favicon.ico') }}"/>
     <link href="{{ asset('backend/assets/css/loader.css') }}" rel="stylesheet" type="text/css"/>
-{{--    <script src="{{ asset('backend/assets/js/loader.js') }}"></script>--}}
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&amp;display=swap" rel="stylesheet">
@@ -20,20 +19,8 @@
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    @if((url()->current() == route('admin-analytic')))
-        <link href="{{ asset('backend/plugins/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('backend/assets/css/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css"/>
-    @elseif(url()->current() == route('admin-product-list'))
-        <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/table/datatable/datatables.css') }}">
-        <link rel="stylesheet" type="text/css"
-              href="{{ asset('backend/plugins/table/datatable/dt-global_style.css') }}">
-        <link rel="stylesheet" type="text/css"
-              href="{{ asset('backend/plugins/table/datatable/custom_dt_custom.css') }}">
-        <link rel="stylesheet" type="text/css"
-              href="{{ asset('backend/plugins/table/datatable/custom_dt_multiple_tables.css') }}">
-@endif
-<!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-
+    @yield('extra-css')
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
@@ -48,8 +35,8 @@
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
-@include('backend.layouts.nav')
-<!--  END NAVBAR  -->
+    @include('Backend.layouts.nav')
+    <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
     <div class="main-container" id="container">
@@ -58,19 +45,21 @@
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
-    @include('backend.layouts.sidebar')
-    <!--  END SIDEBAR  -->
+         @include('Backend.layouts.sidebar')
+        <!--  END SIDEBAR  -->
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             @yield('content')
-            @include('backend.layouts.footer')
         </div>
         <!--  END CONTENT AREA  -->
 
-
     </div>
     <!-- END MAIN CONTAINER -->
+
+    <!-- FOOTER -->
+    @include('Backend.layouts.footer')
+    <!-- FOOTER END -->
 
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
@@ -80,40 +69,8 @@
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    @if(url()->current() == route('admin-analytic'))
-        <script src="{{ asset('backend/plugins/apex/apexcharts.min.js') }}"></script>
-        <script src="{{ asset('backend/assets/js/dashboard/dash_1.js') }}"></script>
-    @elseif(url()->current() == route('admin-product-list'))
-        <script src="{{ asset('backend/plugins/table/datatable/datatables.js') }}"></script>
-        <script>
-            $(document).ready(function () {
-                $('table.multi-table').DataTable({
-                    "oLanguage": {
-                        "oPaginate": {
-                            "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
-                            "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
-                        },
-                        "sInfo": "Showing page _PAGE_ of _PAGES_",
-                        "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                        "sSearchPlaceholder": "Search...",
-                        "sLengthMenu": "Results :  _MENU_",
-                    },
-                    "stripeClasses": [],
-                    "lengthMenu": [7, 10, 20, 50],
-                    "pageLength": 7,
-                    drawCallback: function () {
-                        $('.t-dot').tooltip({template: '<div class="tooltip status" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'})
-                        $('.dataTables_wrapper table').removeClass('table-striped');
-                    }
-                });
-            });
-            $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-        </script>
-
-@endif
-<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    @yield('extra-js')
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 <script>
     window.addEventListener("load", function(){
@@ -123,5 +80,11 @@
     $(document).ready(function () {
         App.init();
     });
+    $("[data-toggle=tooltip]").tooltip();
 </script>
+@if(session(ALERT_TOASTR))
+    <script>
+        Frontend.alertToastr({!! session(ALERT_TOASTR) !!})
+    </script>
+@endif
 </html>

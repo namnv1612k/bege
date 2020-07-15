@@ -112,6 +112,10 @@ return [
         'track' => 'Track Order',
         'content' => []
     ],
+    'forgot_password' => [
+        'title' => 'Forgot password',
+        'content' => []
+    ],
 
     /**
      * Backend
